@@ -26,6 +26,7 @@ object TestVersions {
     const val espresso = "3.2.0"
     const val navigationTesting = Versions.navigation
     const val threeTen = "1.4.4"
+    const val assertK = "0.22"
 }
 
 object TestLibraries {
@@ -35,4 +36,5 @@ object TestLibraries {
     const val espressoCore = "androidx.test.espresso:espresso-core:${TestVersions.espresso}"
     const val navigationTesting = "androidx.navigation:navigation-testing:${TestVersions.navigationTesting}"
     const val threeTen = "org.threeten:threetenbp:${TestVersions.threeTen}"
+    const val assertK = "com.willowtreeapps.assertk:assertk-jvm:${TestVersions.assertK}"
 }

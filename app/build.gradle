@@ -44,6 +44,7 @@ dependencies {
 
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.threeTen
+    testImplementation TestLibraries.assertK
 
     androidTestImplementation TestLibraries.junitExt
     androidTestImplementation TestLibraries.espressoCore
