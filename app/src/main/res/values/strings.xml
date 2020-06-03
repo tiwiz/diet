@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Diet</string>
+
+    <string name="meal_title">Current meal</string>
+    <string name="progress_title">Progress</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

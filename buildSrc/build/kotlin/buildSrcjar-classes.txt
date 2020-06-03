@@ -1,0 +1,1 @@
+/Users/roberto/AndroidStudioProjects/Diet/buildSrc/build/classes/kotlin/main/Libraries.class:/Users/roberto/AndroidStudioProjects/Diet/buildSrc/build/classes/kotlin/main/TestLibraries.class:/Users/roberto/AndroidStudioProjects/Diet/buildSrc/build/classes/kotlin/main/TestVersions.class:/Users/roberto/AndroidStudioProjects/Diet/buildSrc/build/classes/kotlin/main/Versions.class

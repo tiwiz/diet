@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/currentMealFragment"
+        android:icon="@drawable/ic_meal"
+        android:title="@string/meal_title" />
+    <item
+        android:id="@+id/progressFragment"
+        android:icon="@drawable/ic_progress"
+        android:title="@string/progress_title" />
+</menu>
