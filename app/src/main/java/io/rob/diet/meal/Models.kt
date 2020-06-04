@@ -91,7 +91,6 @@ enum class Protein(val value: String) {
 }
 
 @Entity(tableName = "meal_portions")
-@TypeConverters(FoodTypeConverter::class)
 data class MealPortion(
     @PrimaryKey val id: Int,
     val definition: String,
@@ -101,7 +100,6 @@ data class MealPortion(
 )
 
 @Entity(tableName = "snack_portions")
-@TypeConverters(MealTypeConverter::class)
 data class SnackPortion(
     @PrimaryKey val id: Int,
     val definition: String,
@@ -112,7 +110,6 @@ data class SnackPortion(
 )
 
 @Entity(tableName = "protein")
-@TypeConverters(ProteinTypeConverter::class, MealTypeConverter::class)
 data class ProteinPerDay(
     @PrimaryKey val id: Int,
     val day: Int,
