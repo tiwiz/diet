@@ -5,7 +5,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/night_snack_background_color">
+    tools:background="@color/breakfast_background_color">
 
     <ImageView
         android:id="@+id/backgroundImage"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@drawable/ic_night_snack_background" />
+        tools:srcCompat="@drawable/ic_breakfast_background" />
 
     <TextView
         android:id="@+id/title"
@@ -41,7 +41,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="200dp"
-        app:cardBackgroundColor="#2DFFFFFF"
+        app:cardBackgroundColor="#3B000000"
         app:cardCornerRadius="5dp"
         app:cardElevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,7 +53,8 @@
             android:id="@+id/meal_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp" />
+            android:layout_margin="16dp"
+            tools:listitem="@layout/meal_element" />
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

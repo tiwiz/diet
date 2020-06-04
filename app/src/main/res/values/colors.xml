@@ -6,6 +6,7 @@
 
     <color name="breakfast_background_color">#834c74</color>
     <color name="lunch_background_color">#21b2db</color>
+    <color name="afternoon_snack_background_color">#67c8d8</color>
     <color name="dinner_background_color">#F47C5A</color>
     <color name="night_snack_background_color">#03485b</color>
 
