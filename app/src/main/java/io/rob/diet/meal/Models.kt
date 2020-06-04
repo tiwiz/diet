@@ -3,19 +3,15 @@ package io.rob.diet.meal
 import androidx.annotation.StringRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 import io.rob.diet.R
-import io.rob.diet.storage.FoodTypeConverter
-import io.rob.diet.storage.MealTypeConverter
-import io.rob.diet.storage.ProteinTypeConverter
 
 
-enum class Meal(val id: String) {
-    BREAKFAST("breakfast"),
-    LUNCH("lunch"),
-    AFTERNOON_SNACK("afternoon_snack"),
-    DINNER("dinner"),
-    NIGHT_SNACK("night_snack");
+enum class Meal(val id: String, @StringRes val stringResId: Int) {
+    BREAKFAST("breakfast", R.string.breakfast_title),
+    LUNCH("lunch", R.string.lunch_title),
+    AFTERNOON_SNACK("afternoon_snack", R.string.afternoon_snack_title),
+    DINNER("dinner", R.string.dinner_title),
+    NIGHT_SNACK("night_snack", R.string.night_snack_title);
 
     companion object {
 

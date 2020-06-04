@@ -8,6 +8,7 @@ object Versions {
     const val threeTen = "1.2.4"
     const val room = "2.2.5"
     const val coroutines = "1.3.7"
+    const val constraintLayout = "2.0.0-beta6"
 }
 
 object Libraries {
@@ -24,6 +25,7 @@ object Libraries {
     const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 }
 
 object TestVersions {

@@ -40,7 +40,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation Libraries.constraintLayout
     implementation Libraries.material
 
     implementation Libraries.fragmentNavigationKtx
