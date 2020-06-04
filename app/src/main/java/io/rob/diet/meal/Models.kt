@@ -1,8 +1,10 @@
 package io.rob.diet.meal
 
+import androidx.annotation.StringRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
+import io.rob.diet.R
 import io.rob.diet.storage.FoodTypeConverter
 import io.rob.diet.storage.MealTypeConverter
 import io.rob.diet.storage.ProteinTypeConverter
@@ -28,19 +30,19 @@ enum class Meal(val id: String) {
     }
 }
 
-enum class FoodType(val value: String) {
-    LEGUMES("legumes"),
-    EGGS("eggs"),
-    CANNED_TUNA("canned_tuna"),
-    COLD_CUTS("cold_cuts"),
-    CHEESE("cheese"),
-    WHITE_MEAT("white_meat"),
-    FISH("fish"),
-    RED_MEAT("red_meat"),
-    PIZZA("pizza"),
-    VEGGIES("veggies"),
-    FRUIT("fruit"),
-    CARBS("carbs");
+enum class FoodType(val value: String, @StringRes val stringResId: Int) {
+    LEGUMES("legumes", R.string.legumes_title),
+    EGGS("eggs", R.string.eggs_title),
+    CANNED_TUNA("canned_tuna", R.string.canned_tuna_title),
+    COLD_CUTS("cold_cuts", R.string.cold_cuts_title),
+    CHEESE("cheese", R.string.cheese_title),
+    WHITE_MEAT("white_meat", R.string.white_meat_title),
+    FISH("fish", R.string.fish_title),
+    RED_MEAT("red_meat", R.string.red_meat_title),
+    PIZZA("pizza", R.string.pizza_title),
+    VEGGIES("veggies", R.string.veggies_title),
+    FRUIT("fruit", R.string.fruit_title),
+    CARBS("carbs", R.string.carbohydrates_title);
 
     companion object {
 
@@ -62,16 +64,16 @@ enum class FoodType(val value: String) {
     }
 }
 
-enum class Protein(val value: String) {
-    LEGUMES("legumes"),
-    EGGS("eggs"),
-    CANNED_TUNA("canned_tuna"),
-    COLD_CUTS("cold_cuts"),
-    CHEESE("cheese"),
-    WHITE_MEAT("white_meat"),
-    FISH("fish"),
-    RED_MEAT("red_meat"),
-    PIZZA("pizza");
+enum class Protein(val value: String, @StringRes val stringResId: Int) {
+    LEGUMES("legumes", R.string.legumes_title),
+    EGGS("eggs", R.string.eggs_title),
+    CANNED_TUNA("canned_tuna", R.string.canned_tuna_title),
+    COLD_CUTS("cold_cuts", R.string.cold_cuts_title),
+    CHEESE("cheese", R.string.cheese_title),
+    WHITE_MEAT("white_meat", R.string.white_meat_title),
+    FISH("fish", R.string.fish_title),
+    RED_MEAT("red_meat", R.string.red_meat_title),
+    PIZZA("pizza", R.string.pizza_title);
 
     companion object {
 
