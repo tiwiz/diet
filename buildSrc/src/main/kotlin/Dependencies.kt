@@ -6,6 +6,8 @@ object Versions {
     const val material = "1.3.0-alpha01"
     const val androidXLegacy = "1.0.0"
     const val threeTen = "1.2.4"
+    const val room = "2.2.5"
+    const val coroutines = "1.3.7"
 }
 
 object Libraries {
@@ -17,6 +19,11 @@ object Libraries {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val androidXLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
     const val threeTen = "com.jakewharton.threetenabp:threetenabp:${Versions.threeTen}"
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+    const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 }
 
 object TestVersions {
@@ -27,6 +34,8 @@ object TestVersions {
     const val navigationTesting = Versions.navigation
     const val threeTen = "1.4.4"
     const val assertK = "0.22"
+    const val roomTesting = Versions.room
+    const val coroutines = Versions.coroutines
 }
 
 object TestLibraries {
@@ -37,4 +46,6 @@ object TestLibraries {
     const val navigationTesting = "androidx.navigation:navigation-testing:${TestVersions.navigationTesting}"
     const val threeTen = "org.threeten:threetenbp:${TestVersions.threeTen}"
     const val assertK = "com.willowtreeapps.assertk:assertk-jvm:${TestVersions.assertK}"
+    const val roomTesting = "androidx.room:room-testing:${TestVersions.roomTesting}"
+    const val coroutinesTesting = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${TestVersions.coroutines}"
 }
