@@ -24,5 +24,6 @@
     <string name="afternoon_snack_title">Afternoon Snack</string>
     <string name="dinner_title">Dinner</string>
     <string name="night_snack_title">Night snack</string>
+    <string name="background_image_content_description">Background image</string>
 
 </resources>

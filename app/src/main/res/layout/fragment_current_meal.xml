@@ -5,16 +5,18 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/breakfast_background_color">
+    tools:background="@color/lunch_background_color">
 
     <ImageView
         android:id="@+id/backgroundImage"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="260dp"
+        android:contentDescription="@string/background_image_content_description"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:srcCompat="@drawable/ic_breakfast_background" />
+        tools:srcCompat="@drawable/ic_lunch_background" />
 
     <TextView
         android:id="@+id/title"
