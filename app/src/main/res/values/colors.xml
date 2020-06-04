@@ -6,6 +6,7 @@
 
     <color name="breakfast_background_color">#834c74</color>
     <color name="lunch_background_color">#21b2db</color>
+    <color name="evening_background_color">#F47C5A</color>
 
     <color name="meal_text_color">#FFFFFF</color>
 </resources>
