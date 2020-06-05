@@ -44,12 +44,16 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
 
     private fun wrapSecondaryCourses(snackPortions: List<SnackPortion>) : List<FoodElement> =
         snackPortions.map { portion ->
-            FoodElement(definition = portion.definition,
-                weight = portion.weight,
-                unit = portion.unit,
+            FoodElement(definition = portion.weightDefinition(),
                 iconRes = fetchIconByType(portion.meal, portion.group)
             )
         }
+
+    private fun SnackPortion.weightDefinition() : String {
+        val weight = listOfNotNull(weight, unit).joinToString(separator = " ", prefix = "(", postfix = ")")
+
+        return "$definition $weight"
+    }
 
     @DrawableRes
     private fun fetchIconByType(meal: Meal, group: Int) : Int? {

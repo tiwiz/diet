@@ -8,8 +8,6 @@ import io.rob.diet.R
 data class FoodElement(
     val definition: String? = null,
     @StringRes val definitionRes: Int? = null,
-    val weight: Int? = null,
-    val unit: String? = null,
     @DrawableRes val iconRes: Int? = null,
     val typeDetail: String? = null)
 

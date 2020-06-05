@@ -96,10 +96,15 @@ class MealRepositoryTest {
     fun `verify breakfast items have icons associated`() = runBlockingTest {
         val uiData = repository.fetchDataForMealAndDay(Meal.BREAKFAST, 1)
 
+        val item1 = "$BREAKFAST_SNACK_1 (100 g)"
+        val item2 = "$BREAKFAST_SNACK_2 (6)"
+
         val icons = uiData.mapNotNull { it.iconRes }
+        val texts = uiData.map { it.definition }
 
         assertThat(icons.size).isEqualTo(uiData.size)
         assertThat(icons).containsAll(R.drawable.ic_food, R.drawable.ic_drink)
+        assertThat(texts).containsAll(item1, item2)
     }
 
     @Test
