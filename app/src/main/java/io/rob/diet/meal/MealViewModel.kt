@@ -9,29 +9,41 @@ import io.rob.diet.common.Lce
 import kotlinx.coroutines.launch
 
 class MealViewModel @ViewModelInject constructor(
-    private val mealDecider: MealDecider,
-    private val dayDecider: DayDecider,
-    private val mealRepository: MealRepository
+    mealDecider: MealDecider,
+    dayDecider: DayDecider,
+    private val mealRepository: MealRepository,
+    private val alternativeMealDecider: AlternativeMealDecider
 ) : ViewModel() {
 
     private val _mealUi = MutableLiveData<Lce<MealUi>>()
+
+    private var currentMeal = mealDecider.mealForTime()
+
+    private var currentDay = dayDecider.getCurrentDayOfTheWeek()
 
     val mealUi: LiveData<Lce<MealUi>>
         get() = _mealUi
 
     fun fetchNextMeal() {
-        fetchMealWithParameters(
-            mealDecider.mealForTime(),
-            dayDecider.getCurrentDayOfTheWeek()
-        )
+        fetchMealWithParameters(currentMeal, currentDay)
     }
 
     fun onPreviousMealSelected() {
+        val (meal, day) = alternativeMealDecider.previousMealFrom(currentMeal, currentDay)
 
+        currentMeal = meal
+        currentDay = day
+
+        fetchNextMeal()
     }
 
     fun onNextMealSelected() {
+        val (meal, day) = alternativeMealDecider.nextMealFrom(currentMeal, currentDay)
 
+        currentMeal = meal
+        currentDay = day
+
+        fetchNextMeal()
     }
 
     private fun fetchMealWithParameters(meal: Meal, day: Int) {

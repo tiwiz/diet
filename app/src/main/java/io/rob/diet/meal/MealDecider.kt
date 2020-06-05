@@ -9,7 +9,7 @@ class MealDecider @Inject constructor(){
 
     fun mealForTime(time: LocalTime = now()) : Meal =
         when {
-            time.isBetween(4, 10) -> BREAKFAST
+            time.isBetween(HOURS, 10) -> BREAKFAST
             time.isBetween(10, 15) -> LUNCH
             time.isBetween(15, 18) -> AFTERNOON_SNACK
             time.isBetween(18, 22) -> DINNER
@@ -21,5 +21,12 @@ class MealDecider @Inject constructor(){
         val lowerBound = MIDNIGHT.plusHours(lowerBoundOffsetInHours).minusSeconds(1)
         val upperBound = MIDNIGHT.plusHours(upperBoundOffsetInHours)
         return isAfter(lowerBound) && isBefore(upperBound)
+    }
+
+    companion object {
+
+        private const val HOURS = 4L
+
+        val NIGHT_SNACK_LOWER_BOUND = MIDNIGHT.plusHours(HOURS)
     }
 }
