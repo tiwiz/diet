@@ -4,6 +4,8 @@ import androidx.room.TypeConverter
 import io.rob.diet.meal.FoodType
 import io.rob.diet.meal.Meal
 import io.rob.diet.meal.Protein
+import org.threeten.bp.Instant
+import org.threeten.bp.LocalDate
 
 class FoodTypeConverter {
 
@@ -30,6 +32,15 @@ class ProteinTypeConverter {
 
     @TypeConverter
     fun fromDatabase(value: String) = Protein.from(value)
+}
+
+class LocalDateTypeConverter {
+
+    @TypeConverter
+    fun toDatabase(localDate: LocalDate) = localDate.toString()
+
+    @TypeConverter
+    fun fromDatabase(value: String) = LocalDate.parse(value)
 }
 
 

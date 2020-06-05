@@ -8,12 +8,15 @@ import androidx.room.TypeConverters
 import io.rob.diet.meal.MealPortion
 import io.rob.diet.meal.ProteinPerDay
 import io.rob.diet.meal.SnackPortion
+import io.rob.diet.progress.Measurement
 
-@Database(entities = [MealPortion::class, SnackPortion::class, ProteinPerDay::class], version = 1)
-@TypeConverters(ProteinTypeConverter::class, MealTypeConverter::class, FoodTypeConverter::class)
+@Database(entities = [MealPortion::class, SnackPortion::class, ProteinPerDay::class, Measurement::class], version = 1)
+@TypeConverters(ProteinTypeConverter::class, MealTypeConverter::class, FoodTypeConverter::class, LocalDateTypeConverter::class)
 abstract class DietDatabase : RoomDatabase() {
 
-    abstract fun dao() : DietDao
+    abstract fun dietDao() : DietDao
+
+    abstract fun progressDao() : ProgressDao
 
     companion object {
 

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7c016168c612dcc0ba72be41326538c9",
+    "identityHash": "d558cfaf8034e4ecbfee18478ec3014d",
     "entities": [
       {
         "tableName": "meal_portions",
@@ -135,12 +135,74 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "progress",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `weight` REAL NOT NULL, `bmi` REAL NOT NULL, `waist` REAL NOT NULL, `umbilical` REAL NOT NULL, `hip` REAL NOT NULL, `bodyFatPct` REAL NOT NULL, `date` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weight",
+            "columnName": "weight",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bmi",
+            "columnName": "bmi",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "waist",
+            "columnName": "waist",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "umbilical",
+            "columnName": "umbilical",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hip",
+            "columnName": "hip",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bodyFatPct",
+            "columnName": "bodyFatPct",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7c016168c612dcc0ba72be41326538c9')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd558cfaf8034e4ecbfee18478ec3014d')"
     ]
   }
 }
