@@ -11,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.MainActivity
-import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.common.tintStatusBar
 import io.rob.diet.databinding.FragmentCurrentMealBinding
@@ -54,7 +53,6 @@ class CurrentMealFragment : Fragment() {
         val color = ContextCompat.getColor(requireContext(), data.backgroundColorRes)
         binding.root.setBackgroundColor(color)
 
-        //TODO Change status bar to white icons
         tintStatusBar(color)
 
         (requireActivity() as? MainActivity)?.updateNavigationBarColorTo(data.navigationColorRes)

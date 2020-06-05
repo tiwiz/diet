@@ -27,8 +27,6 @@ class MealViewModel @ViewModelInject constructor(
     }
 
     private fun fetchMealWithParameters(meal: Meal, day: Int) {
-        _mealUi.postValue(Lce.Loading)
-
         viewModelScope.launch {
             val items = mealRepository.fetchDataForMealAndDay(meal, day)
             val ui = wrapIntoMealUi(meal, items)
