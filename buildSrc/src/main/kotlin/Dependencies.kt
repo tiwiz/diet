@@ -23,6 +23,7 @@ object Libraries {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val fragmentNavigationKtx = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val androidXLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
     const val threeTen = "com.jakewharton.threetenabp:threetenabp:${Versions.threeTen}"
