@@ -43,6 +43,7 @@ class MealViewModel @ViewModelInject constructor(
             titleRes = meal.stringResId,
             backgroundColorRes = staticData.backgroundColorRes,
             backgroundImageRes = staticData.iconRes,
+            navigationColorRes = staticData.navigationColorRes,
             elements = items
         )
     }
