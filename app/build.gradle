@@ -64,6 +64,11 @@ dependencies {
     implementation Libraries.coroutines
     implementation Libraries.coroutinesAndroid
 
+    implementation Libraries.fragmentKtx
+    implementation Libraries.lifecycleExtensions
+    implementation Libraries.liveData
+    implementation Libraries.viewModel
+
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.threeTen
     testImplementation TestLibraries.assertK

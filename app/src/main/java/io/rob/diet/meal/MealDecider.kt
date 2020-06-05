@@ -3,8 +3,9 @@ package io.rob.diet.meal
 import io.rob.diet.meal.Meal.*
 import org.threeten.bp.LocalTime
 import org.threeten.bp.LocalTime.*
+import javax.inject.Inject
 
-class MealDecider {
+class MealDecider @Inject constructor(){
 
     fun mealForTime(time: LocalTime) : Meal =
         when {

@@ -9,6 +9,8 @@ object Versions {
     const val room = "2.2.5"
     const val coroutines = "1.3.7"
     const val constraintLayout = "2.0.0-beta6"
+    const val fragmentKtx = "1.2.4"
+    const val lifecycle = "2.2.0"
 
     const val dagger = "2.28"
     const val daggerHiltAndroid = "2.28-alpha"
@@ -39,6 +41,11 @@ object Libraries {
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.daggerHiltAndroid}"
     const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.daggerHilt}"
+
+    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 }
 
 object TestVersions {
