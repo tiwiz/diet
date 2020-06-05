@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "io.rob.diet"
@@ -18,7 +18,8 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+                arguments = ["room.schemaLocation" : "$projectDir/schemas".toString(),
+                             "dagger.hilt.android.internal.disableAndroidSuperclassValidation": "true"]
             }
         }
     }
@@ -30,13 +31,12 @@ android {
         }
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation Libraries.coreKtx
     implementation Libraries.appCompat
@@ -48,6 +48,14 @@ dependencies {
     implementation Libraries.androidXLegacy
 
     implementation Libraries.threeTen
+
+    implementation Libraries.dagger
+    implementation Libraries.hiltAndroid
+    implementation Libraries.hiltCommon
+    implementation Libraries.hiltViewModel
+    kapt Libraries.daggerCompiler
+    kapt Libraries.hiltAndroidCompiler
+    kapt Libraries.hiltCompiler
 
     implementation Libraries.roomRuntime
     kapt Libraries.roomCompiler
@@ -65,5 +73,8 @@ dependencies {
     androidTestImplementation TestLibraries.junitExt
     androidTestImplementation TestLibraries.espressoCore
     androidTestImplementation TestLibraries.navigationTesting
+
+    androidTestImplementation TestLibraries.hiltTesting
+    kaptAndroidTest Libraries.hiltAndroidCompiler
 
 }
