@@ -10,9 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
-import io.rob.diet.MainActivity
 import io.rob.diet.common.Lce
-import io.rob.diet.common.tintStatusBar
+import io.rob.diet.common.updateExternalColors
 import io.rob.diet.databinding.FragmentCurrentMealBinding
 
 
@@ -42,6 +41,8 @@ class CurrentMealFragment : Fragment() {
         binding.mealList.layoutManager = LinearLayoutManager(requireContext())
         binding.mealList.adapter = mealAdapter
 
+
+        //TODO think of a calendar
         binding.previousButton.setOnClickListener {
             viewModel.onPreviousMealSelected()
         }
@@ -61,9 +62,7 @@ class CurrentMealFragment : Fragment() {
         val color = ContextCompat.getColor(requireContext(), data.backgroundColorRes)
         binding.root.setBackgroundColor(color)
 
-        tintStatusBar(color)
-
-        (requireActivity() as? MainActivity)?.updateNavigationBarColorTo(data.navigationColorRes)
+        updateExternalColors(color, data.navigationColorRes)
 
         binding.title.setText(data.titleRes)
         binding.backgroundImage.setImageResource(data.backgroundImageRes)
@@ -71,6 +70,7 @@ class CurrentMealFragment : Fragment() {
         mealAdapter.updateElements(data.elements)
     }
 
+    //TODO show details
     private fun onTypeSelected(query: String) {
         println(query)
     }

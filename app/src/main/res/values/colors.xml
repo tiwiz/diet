@@ -16,5 +16,7 @@
     <color name="night_snack_background_color">#03485b</color>
     <color name="night_snack_navigation_color">#343146</color>
 
+    <color name="progress_background_color">#5ABD92</color>
+
     <color name="meal_text_color">#FFFFFF</color>
 </resources>
