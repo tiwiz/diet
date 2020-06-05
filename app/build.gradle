@@ -18,8 +18,7 @@ android {
 
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = ["room.schemaLocation" : "$projectDir/schemas".toString(),
-                             "dagger.hilt.android.internal.disableAndroidSuperclassValidation": "true"]
+                arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
             }
         }
     }
@@ -74,6 +73,7 @@ dependencies {
     testImplementation TestLibraries.assertK
     testImplementation TestLibraries.roomTesting
     testImplementation TestLibraries.coroutinesTesting
+    testImplementation TestLibraries.mockitoKotlin
 
     androidTestImplementation TestLibraries.junitExt
     androidTestImplementation TestLibraries.espressoCore

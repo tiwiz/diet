@@ -59,6 +59,7 @@ object TestVersions {
     const val roomTesting = Versions.room
     const val coroutines = Versions.coroutines
     const val daggerHiltAndroid = Versions.daggerHiltAndroid
+    const val mockitoKotlin = "2.2.0"
 }
 
 object TestLibraries {
@@ -72,4 +73,5 @@ object TestLibraries {
     const val roomTesting = "androidx.room:room-testing:${TestVersions.roomTesting}"
     const val coroutinesTesting = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${TestVersions.coroutines}"
     const val hiltTesting = "com.google.dagger:hilt-android-testing:${TestVersions.daggerHiltAndroid}"
+    const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${TestVersions.mockitoKotlin}"
 }
