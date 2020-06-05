@@ -2,7 +2,6 @@ package io.rob.diet.meal
 
 import io.rob.diet.meal.MealDecider.Companion.NIGHT_SNACK_LOWER_BOUND
 import org.threeten.bp.LocalTime
-import org.threeten.bp.LocalTime.MIDNIGHT
 import org.threeten.bp.LocalTime.now
 import javax.inject.Inject
 
@@ -13,7 +12,7 @@ class AlternativeMealDecider @Inject constructor() {
 
     fun nextMealFrom(meal: Meal, day: Int, time: LocalTime = now()): Pair<Meal, Int> {
         val currentIndex = meals.indexOfFirst { it == meal }
-        var nextIndex: Int = 0
+        val nextIndex: Int
         var newDay = day
 
         if (currentIndex == meals.size - 1) {
