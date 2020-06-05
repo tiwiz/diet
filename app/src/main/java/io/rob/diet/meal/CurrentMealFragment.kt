@@ -42,6 +42,14 @@ class CurrentMealFragment : Fragment() {
         binding.mealList.layoutManager = LinearLayoutManager(requireContext())
         binding.mealList.adapter = mealAdapter
 
+        binding.previousButton.setOnClickListener {
+            viewModel.onPreviousMealSelected()
+        }
+
+        binding.nextButton.setOnClickListener {
+            viewModel.onNextMealSelected()
+        }
+
         viewModel.mealUi.observe(viewLifecycleOwner, Observer {
             if (it is Lce.Success) {
                 bindUi(it.data)

@@ -26,6 +26,14 @@ class MealViewModel @ViewModelInject constructor(
         )
     }
 
+    fun onPreviousMealSelected() {
+
+    }
+
+    fun onNextMealSelected() {
+
+    }
+
     private fun fetchMealWithParameters(meal: Meal, day: Int) {
         viewModelScope.launch {
             val items = mealRepository.fetchDataForMealAndDay(meal, day)
