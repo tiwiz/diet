@@ -7,10 +7,7 @@ import assertk.assertions.isTrue
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import io.rob.diet.R
-import io.rob.diet.meal.Meal
-import io.rob.diet.meal.Protein
-import io.rob.diet.meal.ProteinPerDay
-import io.rob.diet.meal.SnackPortion
+import io.rob.diet.meal.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest

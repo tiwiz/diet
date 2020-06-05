@@ -1,14 +1,14 @@
-package io.rob.diet.storage
+package io.rob.diet.meal
 
 import androidx.annotation.DrawableRes
 import io.rob.diet.R
-import io.rob.diet.meal.*
 import io.rob.diet.meal.FoodType.*
+import io.rob.diet.storage.DietDao
 import javax.inject.Inject
 
 class MealRepository @Inject constructor(private val dietDao: DietDao) {
 
-    suspend fun fetchDataForMealAndDay(meal: Meal, day: Int) : List<UiData> {
+    suspend fun fetchDataForMealAndDay(meal: Meal, day: Int) : List<FoodElement> {
         return if (meal == Meal.LUNCH || meal == Meal.DINNER) {
             wrapMainCourses(dietDao.getProteinByMealAndDay(meal, day))
         } else {
@@ -17,7 +17,7 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
         }
     }
 
-    private fun wrapMainCourses(proteinPerDay: ProteinPerDay) : List<UiData> =
+    private fun wrapMainCourses(proteinPerDay: ProteinPerDay) : List<FoodElement> =
         if (proteinPerDay.protein == Protein.PIZZA) {
             listOf(
                 proteinPerDay.toUiData(),
@@ -32,19 +32,19 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
             )
         }
 
-    private fun FoodType.toUiData() = UiData(
+    private fun FoodType.toUiData() = FoodElement(
         definitionRes = stringResId,
         typeDetail = value
     )
 
-    private fun ProteinPerDay.toUiData() = UiData(
+    private fun ProteinPerDay.toUiData() = FoodElement(
         definitionRes = protein.stringResId,
         typeDetail = protein.value
     )
 
-    private fun wrapSecondaryCourses(snackPortions: List<SnackPortion>) : List<UiData> =
+    private fun wrapSecondaryCourses(snackPortions: List<SnackPortion>) : List<FoodElement> =
         snackPortions.map { portion ->
-            UiData(definition = portion.definition,
+            FoodElement(definition = portion.definition,
                 weight = portion.weight,
                 unit = portion.unit,
                 iconRes = fetchIconByType(portion.meal, portion.group)
