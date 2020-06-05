@@ -9,6 +9,10 @@ object Versions {
     const val room = "2.2.5"
     const val coroutines = "1.3.7"
     const val constraintLayout = "2.0.0-beta6"
+
+    const val dagger = "2.28"
+    const val daggerHiltAndroid = "2.28-alpha"
+    const val daggerHilt = "1.0.0-SNAPSHOT"
 }
 
 object Libraries {
@@ -26,6 +30,15 @@ object Libraries {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+
+    const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltAndroid}"
+    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
+    const val hiltAndroid = "com.google.dagger:hilt-android:${Versions.daggerHiltAndroid}"
+    const val hiltCommon = "androidx.hilt:hilt-common:${Versions.daggerHilt}"
+    const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.daggerHilt}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.daggerHiltAndroid}"
+    const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.daggerHilt}"
 }
 
 object TestVersions {
@@ -38,6 +51,7 @@ object TestVersions {
     const val assertK = "0.22"
     const val roomTesting = Versions.room
     const val coroutines = Versions.coroutines
+    const val daggerHiltAndroid = Versions.daggerHiltAndroid
 }
 
 object TestLibraries {
@@ -50,4 +64,5 @@ object TestLibraries {
     const val assertK = "com.willowtreeapps.assertk:assertk-jvm:${TestVersions.assertK}"
     const val roomTesting = "androidx.room:room-testing:${TestVersions.roomTesting}"
     const val coroutinesTesting = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${TestVersions.coroutines}"
+    const val hiltTesting = "com.google.dagger:hilt-android-testing:${TestVersions.daggerHiltAndroid}"
 }
