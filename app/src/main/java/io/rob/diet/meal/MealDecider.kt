@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class MealDecider @Inject constructor(){
 
-    fun mealForTime(time: LocalTime) : Meal =
+    fun mealForTime(time: LocalTime = now()) : Meal =
         when {
             time.isBetween(4, 10) -> BREAKFAST
             time.isBetween(10, 15) -> LUNCH
