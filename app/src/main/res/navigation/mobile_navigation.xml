@@ -19,7 +19,7 @@
             android:id="@+id/action_progressFragment_to_measurementFragment"
             app:destination="@id/measurementFragment" />
     </fragment>
-    <fragment
+    <dialog
         android:id="@+id/measurementFragment"
         android:name="io.rob.diet.measurement.MeasurementFragment"
         android:label="fragment_measurement"
