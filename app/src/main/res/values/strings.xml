@@ -25,7 +25,12 @@
     <string name="dinner_title">Dinner</string>
     <string name="night_snack_title">Night snack</string>
     <string name="background_image_content_description">Background image</string>
-    <string name="weight_hint">Weight</string>
+    <string name="weight_hint">Weight (KG)</string>
     <string name="new_measurements_title">New measurements</string>
+    <string name="bmi">BMI</string>
+    <string name="waist">Waist (cm)</string>
+    <string name="umbilical">Umbilical (cm)</string>
+    <string name="hip">Hip (cm)</string>
+    <string name="body_fat">Body Fat (%)</string>
 
 </resources>
