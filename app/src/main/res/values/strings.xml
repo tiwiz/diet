@@ -35,5 +35,13 @@
     <string name="alternate_meal_title">Meal</string>
     <string name="afternoon_snack_short">Snack</string>
     <string name="night_snack_short">Snack</string>
+    <string name="alternate_day_title">Day</string>
+    <string name="day_1_short">Mon</string>
+    <string name="day_2_short">Tue</string>
+    <string name="day_3_short">Wed</string>
+    <string name="day_4_short">Tue</string>
+    <string name="day_5_short">Fri</string>
+    <string name="day_6_short">Sat</string>
+    <string name="day_7_short">Sun</string>
 
 </resources>

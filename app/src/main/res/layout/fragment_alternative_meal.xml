@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
+            android:paddingBottom="8dp"
             android:scrollIndicators="none">
 
             <RadioButton
@@ -89,68 +90,81 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Day"
+        android:text="@string/alternate_day_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrollableMeals" />
 
-    <RadioGroup
-        android:id="@+id/days"
+    <HorizontalScrollView
+        android:id="@+id/scrollable_days"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        android:scrollIndicators="bottom"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day_picker_title">
 
-        <RadioButton
-            android:id="@+id/day1"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/days"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="M" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:scrollIndicators="none">
 
-        <RadioButton
-            android:id="@+id/day2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="T" />
+            <RadioButton
+                android:id="@+id/day1"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_1_short" />
 
-        <RadioButton
-            android:id="@+id/day3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="W" />
+            <RadioButton
+                android:id="@+id/day2"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_2_short" />
 
-        <RadioButton
-            android:id="@+id/day4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="T" />
+            <RadioButton
+                android:id="@+id/day3"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_3_short" />
 
-        <RadioButton
-            android:id="@+id/day5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="F" />
+            <RadioButton
+                android:id="@+id/day4"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_4_short" />
 
-        <RadioButton
-            android:id="@+id/day6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="S" />
+            <RadioButton
+                android:id="@+id/day5"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_5_short" />
 
-        <RadioButton
-            android:id="@+id/day7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="S" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/day6"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_6_short" />
+
+            <RadioButton
+                android:id="@+id/day7"
+                style="@style/DayCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/day_7_short" />
+        </RadioGroup>
+
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

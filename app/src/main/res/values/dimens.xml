@@ -3,5 +3,6 @@
     <dimen name="checkbox_horizontal_padding">15dp</dimen>
     <dimen name="checkbox_vertical_padding">10dp</dimen>
     <dimen name="checkbox_big_min_width">80dp</dimen>
+    <dimen name="checkbox_small_min_width">50dp</dimen>
     <dimen name="checkbox_horizontal_margin">4dp</dimen>
 </resources>
