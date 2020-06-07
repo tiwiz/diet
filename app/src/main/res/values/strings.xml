@@ -32,5 +32,8 @@
     <string name="umbilical">Umbilical (cm)</string>
     <string name="hip">Hip (cm)</string>
     <string name="body_fat">Body Fat (%)</string>
+    <string name="alternate_meal_title">Meal</string>
+    <string name="afternoon_snack_short">Snack</string>
+    <string name="night_snack_short">Snack</string>
 
 </resources>

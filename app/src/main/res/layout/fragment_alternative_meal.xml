@@ -15,55 +15,73 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Meal"
+        android:text="@string/alternate_meal_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioGroup
-        android:id="@+id/meals"
+    <HorizontalScrollView
+        android:id="@+id/scrollableMeals"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:scrollIndicators="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meal_picker_title">
 
-        <RadioButton
-            android:id="@+id/breakfast"
+        <RadioGroup
+            android:id="@+id/meals"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="B" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:scrollIndicators="none">
 
-        <RadioButton
-            android:id="@+id/lunch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="L" />
+            <RadioButton
+                android:id="@+id/breakfast"
+                style="@style/MealCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/breakfast_checkbox_background"
+                android:text="@string/breakfast_title" />
 
-        <RadioButton
-            android:id="@+id/afternoon_snack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="A" />
+            <RadioButton
+                android:id="@+id/lunch"
+                style="@style/MealCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/lunch_checkbox_background"
+                android:text="@string/lunch_title" />
 
-        <RadioButton
-            android:id="@+id/dinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="D" />
+            <RadioButton
+                android:id="@+id/afternoon_snack"
+                style="@style/MealCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/afternoon_checkbox_background"
+                android:text="@string/afternoon_snack_short" />
 
-        <RadioButton
-            android:id="@+id/night_snack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="N" />
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/dinner"
+                style="@style/MealCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dinner_checkbox_background"
+                android:text="@string/dinner_title" />
+
+            <RadioButton
+                android:id="@+id/night_snack"
+                style="@style/MealCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/night_checkbox_background"
+                android:text="@string/night_snack_short" />
+        </RadioGroup>
+    </HorizontalScrollView>
 
     <TextView
         android:id="@+id/day_picker_title"
@@ -75,7 +93,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meals" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollableMeals" />
 
     <RadioGroup
         android:id="@+id/days"
