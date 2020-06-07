@@ -11,8 +11,7 @@ import kotlinx.coroutines.launch
 class MealViewModel @ViewModelInject constructor(
     mealDecider: MealDecider,
     dayDecider: DayDecider,
-    private val mealRepository: MealRepository,
-    private val alternativeMealDecider: AlternativeMealDecider
+    private val mealRepository: MealRepository
 ) : ViewModel() {
 
     private val _mealUi = MutableLiveData<Lce<MealUi>>()
@@ -28,33 +27,15 @@ class MealViewModel @ViewModelInject constructor(
         fetchMealWithParameters(currentMeal, currentDay)
     }
 
-    fun onPreviousMealSelected() {
-        val (meal, day) = alternativeMealDecider.previousMealFrom(currentMeal, currentDay)
-
-        currentMeal = meal
-        currentDay = day
-
-        fetchNextMeal()
-    }
-
-    fun onNextMealSelected() {
-        val (meal, day) = alternativeMealDecider.nextMealFrom(currentMeal, currentDay)
-
-        currentMeal = meal
-        currentDay = day
-
-        fetchNextMeal()
-    }
-
-    private fun fetchMealWithParameters(meal: Meal, day: Int) {
+    fun fetchMealWithParameters(meal: Meal, day: Int) {
         viewModelScope.launch {
             val items = mealRepository.fetchDataForMealAndDay(meal, day)
-            val ui = wrapIntoMealUi(meal, items)
+            val ui = wrapIntoMealUi(meal, day, items)
             _mealUi.postValue(Lce.Success(ui))
         }
     }
 
-    private fun wrapIntoMealUi(meal: Meal, items: List<FoodElement>): MealUi {
+    private fun wrapIntoMealUi(meal: Meal, day: Int, items: List<FoodElement>): MealUi {
         val staticData = MealUiStaticData.from(meal)
 
         return MealUi(
@@ -62,6 +43,8 @@ class MealViewModel @ViewModelInject constructor(
             backgroundColorRes = staticData.backgroundColorRes,
             backgroundImageRes = staticData.iconRes,
             navigationColorRes = staticData.navigationColorRes,
+            meal = meal,
+            day = day,
             elements = items
         )
     }

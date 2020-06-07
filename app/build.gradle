@@ -61,6 +61,7 @@ dependencies {
     implementation Libraries.hiltAndroid
     implementation Libraries.hiltCommon
     implementation Libraries.hiltViewModel
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt Libraries.daggerCompiler
     kapt Libraries.hiltAndroidCompiler
     kapt Libraries.hiltCompiler

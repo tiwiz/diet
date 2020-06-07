@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.lifecycle.*
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.common.Lce
 import io.rob.diet.common.updateExternalColors
 import io.rob.diet.databinding.FragmentCurrentMealBinding
+import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToAlternativeMealFragment
 
 
 @AndroidEntryPoint
@@ -21,6 +24,8 @@ class CurrentMealFragment : Fragment() {
     private lateinit var binding: FragmentCurrentMealBinding
 
     private val viewModel by viewModels<MealViewModel>()
+
+    private val sharedVM by activityViewModels<AlternativeMealViewModel>()
 
     private val mealAdapter by lazy {
         MealAdapter(LayoutInflater.from(requireActivity()), this::onTypeSelected)
@@ -32,6 +37,7 @@ class CurrentMealFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCurrentMealBinding.inflate(inflater, container, false)
+
         return binding.root
     }
 
@@ -41,20 +47,14 @@ class CurrentMealFragment : Fragment() {
         binding.mealList.layoutManager = LinearLayoutManager(requireContext())
         binding.mealList.adapter = mealAdapter
 
-
-        //TODO think of a calendar
-        binding.previousButton.setOnClickListener {
-            viewModel.onPreviousMealSelected()
-        }
-
-        binding.nextButton.setOnClickListener {
-            viewModel.onNextMealSelected()
-        }
-
         viewModel.mealUi.observe(viewLifecycleOwner, Observer {
             if (it is Lce.Success) {
                 bindUi(it.data)
             }
+        })
+
+        sharedVM.alternativeMeal.observe(viewLifecycleOwner, Observer { (meal, day) ->
+            viewModel.fetchMealWithParameters(meal, day)
         })
     }
 
@@ -66,6 +66,12 @@ class CurrentMealFragment : Fragment() {
 
         binding.title.setText(data.titleRes)
         binding.backgroundImage.setImageResource(data.backgroundImageRes)
+
+        binding.mealSelection.setOnClickListener {
+            val action =
+                actionCurrentMealFragmentToAlternativeMealFragment(data.meal.id, data.day)
+            findNavController().navigate(action)
+        }
 
         mealAdapter.updateElements(data.elements)
     }

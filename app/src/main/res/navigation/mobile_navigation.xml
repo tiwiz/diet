@@ -9,7 +9,11 @@
         android:id="@+id/currentMealFragment"
         android:name="io.rob.diet.meal.CurrentMealFragment"
         android:label="CurrentMealFragment"
-        tools:layout="@layout/fragment_current_meal"/>
+        tools:layout="@layout/fragment_current_meal">
+        <action
+            android:id="@+id/action_currentMealFragment_to_alternativeMealFragment"
+            app:destination="@id/alternativeMealFragment" />
+    </fragment>
     <fragment
         android:id="@+id/progressFragment"
         android:name="io.rob.diet.progress.ProgressFragment"
@@ -24,4 +28,16 @@
         android:name="io.rob.diet.measurement.MeasurementFragment"
         android:label="fragment_measurement"
         tools:layout="@layout/fragment_measurement" />
+    <dialog
+        android:id="@+id/alternativeMealFragment"
+        android:name="io.rob.diet.meal.AlternativeMealFragment"
+        android:label="fragment_alternative_meal"
+        tools:layout="@layout/fragment_alternative_meal" >
+        <argument
+            android:name="meal"
+            app:argType="string" />
+        <argument
+            android:name="day"
+            app:argType="integer" />
+    </dialog>
 </navigation>

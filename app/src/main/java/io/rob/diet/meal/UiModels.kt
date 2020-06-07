@@ -16,6 +16,8 @@ data class MealUi(
     @ColorRes val backgroundColorRes: Int,
     @DrawableRes val backgroundImageRes: Int,
     @ColorRes val navigationColorRes: Int,
+    val meal: Meal,
+    val day: Int,
     val elements: List<FoodElement>
 )
 
