@@ -42,6 +42,7 @@
     <string name="day_5_short">Fri</string>
     <string name="day_6_short">Sat</string>
     <string name="day_7_short">Sun</string>
+    <string name="empty_progress_message">No progress has been recorded yet</string>
 
 
 </resources>
