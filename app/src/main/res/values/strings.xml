@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Diet</string>
+    <string name="select_another_meal" translatable="false">Select another meal</string>
+    <string name="background_image_content_description" translatable="false">Background image</string>
 
     <string name="meal_title">Current meal</string>
     <string name="progress_title">Progress</string>
@@ -22,7 +24,6 @@
     <string name="afternoon_snack_title">Afternoon Snack</string>
     <string name="dinner_title">Dinner</string>
     <string name="night_snack_title">Night snack</string>
-    <string name="background_image_content_description">Background image</string>
     <string name="weight_hint">Weight (KG)</string>
     <string name="new_measurements_title">New measurements</string>
     <string name="bmi">BMI</string>
@@ -41,5 +42,6 @@
     <string name="day_5_short">Fri</string>
     <string name="day_6_short">Sat</string>
     <string name="day_7_short">Sun</string>
+
 
 </resources>

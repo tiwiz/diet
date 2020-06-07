@@ -68,6 +68,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/title"
         app:layout_constraintTop_toTopOf="@+id/title"
-        app:srcCompat="@drawable/ic_calendar" />
+        app:srcCompat="@drawable/ic_calendar"
+        android:contentDescription="@string/select_another_meal" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
