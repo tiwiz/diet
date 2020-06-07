@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.rob.diet.databinding.MealElementBinding
 import javax.inject.Inject
 
-class MealAdapter @Inject constructor(
+class MealAdapter(
     private val layoutInflater: LayoutInflater,
     private val onClick: (String) -> Unit
 ) : RecyclerView.Adapter<MealViewHolder>() {

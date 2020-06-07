@@ -16,6 +16,7 @@ import io.rob.diet.common.Lce
 import io.rob.diet.common.updateExternalColors
 import io.rob.diet.databinding.FragmentCurrentMealBinding
 import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToAlternativeMealFragment
+import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToFoodDetailFragment
 
 
 @AndroidEntryPoint
@@ -76,9 +77,9 @@ class CurrentMealFragment : Fragment() {
         mealAdapter.updateElements(data.elements)
     }
 
-    //TODO show details
     private fun onTypeSelected(query: String) {
-        println(query)
+        val action = actionCurrentMealFragmentToFoodDetailFragment(query)
+        findNavController().navigate(action)
     }
 
     override fun onResume() {
