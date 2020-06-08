@@ -10,23 +10,23 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
 
     suspend fun fetchDataForMealAndDay(meal: Meal, day: Int) : List<FoodElement> {
         return if (meal == Meal.LUNCH || meal == Meal.DINNER) {
-            wrapMainCourses(dietDao.getProteinByMealAndDay(meal, day))
+            wrapMainCourses(dietDao.getPortionByMealAndDay(meal, day))
         } else {
             val portions = dietDao.getSnackPortionsByMeal(meal)
             wrapSecondaryCourses(portions)
         }
     }
 
-    private fun wrapMainCourses(proteinPerDay: ProteinPerDay) : List<FoodElement> =
-        if (proteinPerDay.protein == Protein.PIZZA) {
+    private fun wrapMainCourses(portionPerDay: PortionPerDay) : List<FoodElement> =
+        if (portionPerDay.protein == Protein.PIZZA) {
             listOf(
-                proteinPerDay.toUiData(),
+                portionPerDay.toUiData(),
                 FRUIT.toUiData()
             )
         } else {
             listOf(
                 CARBS.toUiData(),
-                proteinPerDay.toUiData(),
+                portionPerDay.toUiData(),
                 VEGGIES.toUiData(),
                 FRUIT.toUiData()
             )
@@ -37,7 +37,7 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
         typeDetail = value
     )
 
-    private fun ProteinPerDay.toUiData() = FoodElement(
+    private fun PortionPerDay.toUiData() = FoodElement(
         definitionRes = protein.stringResId,
         typeDetail = protein.value
     )
@@ -45,7 +45,8 @@ class MealRepository @Inject constructor(private val dietDao: DietDao) {
     private fun wrapSecondaryCourses(snackPortions: List<SnackPortion>) : List<FoodElement> =
         snackPortions.map { portion ->
             FoodElement(definition = portion.weightDefinition(),
-                iconRes = fetchIconByType(portion.meal, portion.group)
+                iconRes = fetchIconByType(portion.meal, portion.group),
+                typeDetail = portion.type?.value
             )
         }
 

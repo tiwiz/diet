@@ -38,6 +38,7 @@ enum class FoodType(val value: String, @StringRes val stringResId: Int) {
     PIZZA("pizza", R.string.pizza_title),
     VEGGIES("veggies", R.string.veggies_title),
     FRUIT("fruit", R.string.fruit_title),
+    COOKIES("cookies", R.string.cookies_title),
     CARBS("carbs", R.string.carbohydrates_title);
 
     companion object {
@@ -54,6 +55,7 @@ enum class FoodType(val value: String, @StringRes val stringResId: Int) {
                 "red_meat" -> RED_MEAT
                 "veggies" -> VEGGIES
                 "fruit" -> FRUIT
+                "cookies" -> COOKIES
                 "carbs" -> CARBS
                 else -> PIZZA
             }
@@ -104,11 +106,12 @@ data class SnackPortion(
     val weight: Int,
     val unit: String?,
     val meal: Meal,
-    val group: Int
+    val group: Int,
+    val type: FoodType?
 )
 
-@Entity(tableName = "protein")
-data class ProteinPerDay(
+@Entity(tableName = "portions")
+data class PortionPerDay(
     @PrimaryKey val id: Int,
     val day: Int,
     val protein: Protein,

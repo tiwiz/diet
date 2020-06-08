@@ -8,8 +8,8 @@ import io.rob.diet.meal.*
 @Dao
 interface DietDao {
 
-    @Query("SELECT * FROM protein WHERE meal = :meal AND day = :day")
-    suspend fun getProteinByMealAndDay(meal: Meal, day: Int): ProteinPerDay
+    @Query("SELECT * FROM portions WHERE meal = :meal AND day = :day")
+    suspend fun getPortionByMealAndDay(meal: Meal, day: Int): PortionPerDay
 
     @Query("SELECT * FROM snack_portions WHERE meal = :meal")
     suspend fun getSnackPortionsByMeal(meal: Meal): List<SnackPortion>

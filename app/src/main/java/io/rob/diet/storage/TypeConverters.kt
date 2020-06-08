@@ -13,7 +13,7 @@ class FoodTypeConverter {
     fun toDatabase(foodType: FoodType) = foodType.value
 
     @TypeConverter
-    fun fromDatabase(value: String) = FoodType.from(value)
+    fun fromDatabase(value: String?) = value?.let { FoodType.from(value) }
 }
 
 class MealTypeConverter {

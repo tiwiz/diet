@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "d558cfaf8034e4ecbfee18478ec3014d",
+    "identityHash": "edcaa3d66bf11897d6b6f2d43df059b4",
     "entities": [
       {
         "tableName": "meal_portions",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "snack_portions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `definition` TEXT NOT NULL, `weight` INTEGER NOT NULL, `unit` TEXT, `meal` TEXT NOT NULL, `group` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `definition` TEXT NOT NULL, `weight` INTEGER NOT NULL, `unit` TEXT, `meal` TEXT NOT NULL, `group` INTEGER NOT NULL, `type` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -87,6 +87,12 @@
             "columnName": "group",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -99,7 +105,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "protein",
+        "tableName": "portions",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `day` INTEGER NOT NULL, `protein` TEXT NOT NULL, `meal` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -202,7 +208,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd558cfaf8034e4ecbfee18478ec3014d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'edcaa3d66bf11897d6b6f2d43df059b4')"
     ]
   }
 }

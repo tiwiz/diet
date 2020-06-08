@@ -17,14 +17,14 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class MealRepositoryTest {
 
-    private val lunchProteinPerDay = ProteinPerDay(
+    private val lunchProteinPerDay = PortionPerDay(
         id = 0,
         day = 1,
         protein = Protein.COLD_CUTS,
         meal = Meal.LUNCH
     )
 
-    private val dinnerProteinPerDay = ProteinPerDay(
+    private val dinnerProteinPerDay = PortionPerDay(
         id = 1,
         day = 1,
         protein = Protein.PIZZA,
@@ -60,8 +60,8 @@ class MealRepositoryTest {
 
     private val mockDao: DietDao = mock {
         runBlocking {
-            on(it.getProteinByMealAndDay(Meal.LUNCH, 1)) doReturn lunchProteinPerDay
-            on(it.getProteinByMealAndDay(Meal.DINNER, 1)) doReturn dinnerProteinPerDay
+            on(it.getPortionByMealAndDay(Meal.LUNCH, 1)) doReturn lunchProteinPerDay
+            on(it.getPortionByMealAndDay(Meal.DINNER, 1)) doReturn dinnerProteinPerDay
             on(it.getSnackPortionsByMeal(Meal.BREAKFAST)) doReturn listOf(
                 breakfastSnack1,
                 breakfastSnack2
