@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "edcaa3d66bf11897d6b6f2d43df059b4",
+    "identityHash": "7bb25c939525b8c092ffb60a1e9be5c0",
     "entities": [
       {
         "tableName": "meal_portions",
@@ -144,7 +144,7 @@
       },
       {
         "tableName": "progress",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `weight` REAL NOT NULL, `bmi` REAL NOT NULL, `waist` REAL NOT NULL, `umbilical` REAL NOT NULL, `hip` REAL NOT NULL, `bodyFatPct` REAL NOT NULL, `date` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `weight` REAL NOT NULL, `bmi` REAL NOT NULL, `waist` REAL NOT NULL, `umbilical` REAL NOT NULL, `hip` REAL NOT NULL, `bodyFatPct` REAL NOT NULL, `date` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -199,7 +199,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -208,7 +208,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'edcaa3d66bf11897d6b6f2d43df059b4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7bb25c939525b8c092ffb60a1e9be5c0')"
     ]
   }
 }

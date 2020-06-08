@@ -6,12 +6,12 @@ import org.threeten.bp.LocalDate
 
 @Entity(tableName = "progress")
 data class Measurement(
-    @PrimaryKey val id: Int,
-    val weight: Float, //peso
-    val bmi: Float, //bmi
-    val waist: Float, //Circonferenza vita
-    val umbilical: Float, //Circonferenza ombelicale
-    val hip: Float, //Circonferenza fianchi
-    val bodyFatPct: Float, //Massa grassa
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
+    val weight: Float,
+    val bmi: Float,
+    val waist: Float,
+    val umbilical: Float,
+    val hip: Float,
+    val bodyFatPct: Float,
     val date: LocalDate
 )

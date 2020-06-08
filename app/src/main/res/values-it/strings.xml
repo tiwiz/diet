@@ -42,5 +42,6 @@
     <string name="day_7_short">Dom</string>
     <string name="empty_progress_message">Nessuna misurazione registrata.</string>
     <string name="cookies_title">Biscotti</string>
+    <string name="empty_mandatory_field_error">Questa informazione è obbligatoria</string>
 
 </resources>
