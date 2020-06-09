@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.R
@@ -14,6 +15,7 @@ import io.rob.diet.databinding.FragmentAlternativeMealBinding
 class AlternativeMealFragment : BottomSheetDialogFragment() {
 
     private val sharedVM by activityViewModels<AlternativeMealViewModel>()
+    private val args by navArgs<AlternativeMealFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,16 +24,13 @@ class AlternativeMealFragment : BottomSheetDialogFragment() {
 
         val binding = FragmentAlternativeMealBinding.inflate(inflater, container, false)
 
-        val meal = AlternativeMealFragmentArgs.fromBundle(requireArguments()).meal
-        val day = AlternativeMealFragmentArgs.fromBundle(requireArguments()).day
-
-        updateSelectedMeal(meal, binding)
+        updateSelectedMeal(args.meal, binding)
 
         binding.meals.setOnCheckedChangeListener { _, checkedId ->
             onMealSelected(checkedId, binding.days.checkedRadioButtonId)
         }
 
-        updateSelectedDay(day, binding)
+        updateSelectedDay(args.day, binding)
 
         binding.days.setOnCheckedChangeListener { _, checkedId ->
             onMealSelected(binding.meals.checkedRadioButtonId, checkedId)
