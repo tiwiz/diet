@@ -45,5 +45,7 @@
     <string name="day_7_short">Sun</string>
     <string name="empty_progress_message">No progress has been recorded yet</string>
     <string name="empty_mandatory_field_error">This field is mandatory</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

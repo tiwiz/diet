@@ -54,6 +54,7 @@ dependencies {
     implementation Libraries.fragmentNavigationKtx
     implementation Libraries.navigationUiKtx
     implementation Libraries.androidXLegacy
+    implementation Libraries.preferencesKtx
 
     implementation Libraries.threeTen
 
@@ -78,6 +79,9 @@ dependencies {
     implementation Libraries.liveData
     implementation Libraries.viewModel
 
+    implementation Libraries.firebaseAnalytics
+    implementation Libraries.firebaseUiAuth
+
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.threeTen
     testImplementation TestLibraries.assertK
@@ -93,3 +97,5 @@ dependencies {
     kaptAndroidTest Libraries.hiltAndroidCompiler
 
 }
+
+apply plugin: 'com.google.gms.google-services'

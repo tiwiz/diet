@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_progressFragment_to_measurementFragment"
             app:destination="@id/measurementFragment" />
+        <action
+            android:id="@+id/action_progressFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <dialog
         android:id="@+id/measurementFragment"
@@ -52,4 +55,9 @@
             android:name="foodType"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="io.rob.diet.settings.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>

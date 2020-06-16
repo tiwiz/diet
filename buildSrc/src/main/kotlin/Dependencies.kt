@@ -2,7 +2,7 @@ object Versions {
 
     const val ktx = "1.3.0"
     const val appCompat = "1.1.0"
-    const val navigation = "2.3.0-beta01"
+    const val navigation = "2.3.0-rc01"
     const val material = "1.3.0-alpha01"
     const val androidXLegacy = "1.0.0"
     const val threeTen = "1.2.4"
@@ -11,10 +11,14 @@ object Versions {
     const val constraintLayout = "2.0.0-beta6"
     const val fragmentKtx = "1.2.4"
     const val lifecycle = "2.2.0"
+    const val preferences = "1.1.1"
 
     const val dagger = "2.28"
     const val daggerHiltAndroid = "2.28-alpha"
     const val daggerHilt = "1.0.0-SNAPSHOT"
+
+    const val firebaseAnalytics = "17.4.3"
+    const val firebaseUiAuth = "6.2.0"
 }
 
 object Libraries {
@@ -33,6 +37,7 @@ object Libraries {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val preferencesKtx = "androidx.preference:preference-ktx:${Versions.preferences}"
 
     const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltAndroid}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -47,6 +52,9 @@ object Libraries {
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
     const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
+    const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUiAuth}"
 }
 
 object TestVersions {

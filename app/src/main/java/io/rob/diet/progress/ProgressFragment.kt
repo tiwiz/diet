@@ -41,6 +41,11 @@ class ProgressFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.settings.setOnClickListener {
+            val action = ProgressFragmentDirections.actionProgressFragmentToSettingsFragment()
+            findNavController().navigate(action)
+        }
+
         viewModel.recap.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Lce.Loading -> onLoading()
