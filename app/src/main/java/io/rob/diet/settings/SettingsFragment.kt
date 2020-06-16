@@ -22,7 +22,7 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val viewModel by viewModels<SettingsViewModel>()
 
-    private val loginContent = prepareCall(LogInContract()) {
+    private val loginContent = registerForActivityResult(LogInContract()) {
         viewModel.loadUserData()
     }
 

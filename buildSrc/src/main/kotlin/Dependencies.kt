@@ -9,7 +9,7 @@ object Versions {
     const val room = "2.2.5"
     const val coroutines = "1.3.7"
     const val constraintLayout = "2.0.0-beta6"
-    const val fragmentKtx = "1.3.0-alpha02"
+    const val fragmentKtx = "1.3.0-alpha06"
     const val lifecycle = "2.2.0"
     const val preferences = "1.1.1"
     const val timber = "4.7.1"
