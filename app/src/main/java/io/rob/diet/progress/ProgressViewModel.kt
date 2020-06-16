@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.rob.diet.common.Lce
-import io.rob.diet.storage.ProgressDao
+import io.rob.diet.storage.ProgressRepository
 import kotlinx.coroutines.launch
 
 class ProgressViewModel @ViewModelInject constructor(
-    private val dao: ProgressDao,
+    private val repository: ProgressRepository,
     private val measurementTransformer: MeasurementTransformer
 ) : ViewModel() {
 
@@ -23,7 +23,7 @@ class ProgressViewModel @ViewModelInject constructor(
         _recap.postValue(Lce.Loading)
 
         viewModelScope.launch {
-            val measurements = dao.getMeasurements()
+            val measurements = repository.getMeasurements()
             val recapUi = measurementTransformer.toRecapUI(measurements)
 
             if (recapUi == null) {

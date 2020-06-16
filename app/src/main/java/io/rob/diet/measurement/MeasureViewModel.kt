@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.rob.diet.progress.Measurement
-import io.rob.diet.storage.ProgressDao
+import io.rob.diet.storage.ProgressRepository
 import kotlinx.coroutines.launch
 
 class MeasureViewModel @ViewModelInject constructor(
-    private val progressDao: ProgressDao
+    private val repository: ProgressRepository
 ) : ViewModel() {
 
     private val _status = MutableLiveData<Boolean>()
@@ -20,7 +20,7 @@ class MeasureViewModel @ViewModelInject constructor(
 
     fun saveData(measurement : Measurement) {
         viewModelScope.launch {
-            progressDao.insertNewMeasurement(measurement)
+            repository.insertNewMeasurement(measurement)
             _status.postValue(true)
         }
     }

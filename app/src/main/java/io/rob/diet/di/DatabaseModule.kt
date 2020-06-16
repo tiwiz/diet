@@ -6,9 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import io.rob.diet.storage.DietDao
-import io.rob.diet.storage.DietDatabase
-import io.rob.diet.storage.ProgressDao
+import io.rob.diet.storage.*
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -26,4 +24,8 @@ object DatabaseModule {
     @Provides
     @ActivityRetainedScoped
     fun provideProgressDao(db: DietDatabase) : ProgressDao = db.progressDao()
+
+    @Provides
+    @ActivityRetainedScoped
+    fun provideMeasurementRepository(localRepo: LocalRepository) : ProgressRepository = localRepo
 }

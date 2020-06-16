@@ -82,6 +82,7 @@ dependencies {
 
     implementation Libraries.firebaseAnalytics
     implementation Libraries.firebaseUiAuth
+    implementation Libraries.firebaseRealtimeDB
 
     implementation Libraries.coil
 
