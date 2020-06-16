@@ -27,5 +27,5 @@ object DatabaseModule {
 
     @Provides
     @ActivityRetainedScoped
-    fun provideMeasurementRepository(localRepo: LocalRepository) : ProgressRepository = localRepo
+    fun provideMeasurementRepository(repositoryProxy: RepositoryProxy) : ProgressRepository = repositoryProxy
 }
