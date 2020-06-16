@@ -12,7 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
-/buildSrc/build/*
-/buildSrc/build/
-google-services.json
-google-services.json
+buildSrc/build/
+app/google-services.json
