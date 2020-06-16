@@ -12,8 +12,8 @@ android {
         applicationId "io.rob.diet"
         minSdkVersion 26
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0-Internal"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
@@ -36,6 +36,17 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        release {
+            java.srcDir file('src/release/java')
+            manifest.srcFile file('src/release/AndroidManifest.xml')
+        }
+        debug {
+            java.srcDir file('src/debug/java')
+            manifest.srcFile file('src/debug/AndroidManifest.xml')
         }
     }
 
