@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import coil.api.load
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.R
 import io.rob.diet.common.Lce
@@ -20,6 +22,10 @@ class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private val viewModel by viewModels<SettingsViewModel>()
 
+    private val loginContent = prepareCall(LogInContract()) {
+        viewModel.loadUserData()
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +35,7 @@ class SettingsFragment : Fragment() {
         binding = FragmentSettingsBinding.inflate(layoutInflater, container, false)
 
         binding.btnLogIn.setOnClickListener {
-
+            loginContent.launch(null)
         }
 
         binding.btnLogout.setOnClickListener {
@@ -79,5 +85,6 @@ class SettingsFragment : Fragment() {
 
     private fun bind(user: User) {
         binding.displayName.text = user.displayName
+        binding.avatar.load(user.photoUrl)
     }
 }

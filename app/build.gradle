@@ -57,6 +57,7 @@ dependencies {
     implementation Libraries.preferencesKtx
 
     implementation Libraries.threeTen
+    implementation Libraries.timber
 
     implementation Libraries.dagger
     implementation Libraries.hiltAndroid
@@ -81,6 +82,12 @@ dependencies {
 
     implementation Libraries.firebaseAnalytics
     implementation Libraries.firebaseUiAuth
+
+    implementation Libraries.coil
+
+    debugImplementation Libraries.fbFlipper
+    debugImplementation Libraries.soLoader
+    releaseImplementation Libraries.fbFlipperNoOp
 
     testImplementation TestLibraries.junit
     testImplementation TestLibraries.threeTen

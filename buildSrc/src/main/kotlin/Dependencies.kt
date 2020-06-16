@@ -9,9 +9,10 @@ object Versions {
     const val room = "2.2.5"
     const val coroutines = "1.3.7"
     const val constraintLayout = "2.0.0-beta6"
-    const val fragmentKtx = "1.2.4"
+    const val fragmentKtx = "1.3.0-alpha02"
     const val lifecycle = "2.2.0"
     const val preferences = "1.1.1"
+    const val timber = "4.7.1"
 
     const val dagger = "2.28"
     const val daggerHiltAndroid = "2.28-alpha"
@@ -19,6 +20,11 @@ object Versions {
 
     const val firebaseAnalytics = "17.4.3"
     const val firebaseUiAuth = "6.2.0"
+
+    const val fbFlipper = "0.46.0"
+    const val fbSoLoader = "0.9.0"
+
+    const val coil = "0.11.0"
 }
 
 object Libraries {
@@ -38,6 +44,7 @@ object Libraries {
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val preferencesKtx = "androidx.preference:preference-ktx:${Versions.preferences}"
+    const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltAndroid}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
@@ -55,6 +62,11 @@ object Libraries {
 
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
     const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUiAuth}"
+
+    const val fbFlipper = "com.facebook.flipper:flipper:${Versions.fbFlipper}"
+    const val soLoader = "com.facebook.soloader:soloader:${Versions.fbSoLoader}"
+    const val fbFlipperNoOp = "com.facebook.flipper:flipper-noop:${Versions.fbFlipper}"
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
 }
 
 object TestVersions {
