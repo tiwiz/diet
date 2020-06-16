@@ -30,6 +30,8 @@
                 android:value="androidx.startup" />
             <meta-data  android:name="io.rob.diet.startup.LoggerInitializer"
                 android:value="androidx.startup" />
+            <meta-data  android:name="io.rob.diet.startup.RealtimeDatabaseInitializer"
+                android:value="androidx.startup" />
         </provider>
 
     </application>
