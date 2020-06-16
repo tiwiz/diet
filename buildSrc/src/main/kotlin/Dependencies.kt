@@ -12,6 +12,7 @@ object Versions {
     const val fragmentKtx = "1.3.0-alpha06"
     const val lifecycle = "2.2.0"
     const val preferences = "1.1.1"
+    const val appStartup = "1.0.0-alpha01"
     const val timber = "4.7.1"
 
     const val dagger = "2.28"
@@ -45,6 +46,7 @@ object Libraries {
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val preferencesKtx = "androidx.preference:preference-ktx:${Versions.preferences}"
+    const val appStartup = "androidx.startup:startup-runtime:${Versions.appStartup}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
     const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltAndroid}"

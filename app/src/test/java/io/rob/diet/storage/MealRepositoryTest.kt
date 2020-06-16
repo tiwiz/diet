@@ -37,7 +37,8 @@ class MealRepositoryTest {
         weight = 100,
         unit = "g",
         meal = Meal.BREAKFAST,
-        group = 1
+        group = 1,
+        type = FoodType.VEGGIES
     )
 
     private val breakfastSnack2 = SnackPortion(
@@ -46,7 +47,8 @@ class MealRepositoryTest {
         weight = 6,
         unit = null,
         meal = Meal.BREAKFAST,
-        group = 2
+        group = 2,
+        type = FoodType.VEGGIES
     )
 
     private val afternoonSnack = SnackPortion(
@@ -55,7 +57,8 @@ class MealRepositoryTest {
         weight = 6,
         unit = null,
         meal = Meal.AFTERNOON_SNACK,
-        group = 2
+        group = 2,
+        type = FoodType.VEGGIES
     )
 
     private val mockDao: DietDao = mock {

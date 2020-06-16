@@ -55,6 +55,7 @@ dependencies {
     implementation Libraries.navigationUiKtx
     implementation Libraries.androidXLegacy
     implementation Libraries.preferencesKtx
+    implementation Libraries.appStartup
 
     implementation Libraries.threeTen
     implementation Libraries.timber
