@@ -17,6 +17,7 @@ import io.rob.diet.common.updateExternalColors
 import io.rob.diet.databinding.FragmentCurrentMealBinding
 import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToAlternativeMealFragment
 import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToFoodDetailFragment
+import io.rob.diet.meal.CurrentMealFragmentDirections.Companion.actionCurrentMealFragmentToNewMealFragment
 
 
 @AndroidEntryPoint
@@ -72,6 +73,10 @@ class CurrentMealFragment : Fragment() {
             val action =
                 actionCurrentMealFragmentToAlternativeMealFragment(data.meal.id, data.day)
             findNavController().navigate(action)
+        }
+
+        binding.btnAdd.setOnClickListener {
+            findNavController().navigate(actionCurrentMealFragmentToNewMealFragment())
         }
 
         mealAdapter.updateElements(data.elements)

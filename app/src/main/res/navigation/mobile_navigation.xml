@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_currentMealFragment_to_foodDetailFragment"
             app:destination="@id/foodDetailFragment" />
+        <action
+            android:id="@+id/action_currentMealFragment_to_newMealFragment"
+            app:destination="@id/newMealFragment" />
     </fragment>
     <fragment
         android:id="@+id/progressFragment"
@@ -60,4 +63,9 @@
             android:name="foodType"
             app:argType="string" />
     </dialog>
+    <dialog
+        android:id="@+id/newMealFragment"
+        android:name="io.rob.diet.meal.NewMealFragment"
+        android:label="fragment_new_meal"
+        tools:layout="@layout/fragment_new_meal" />
 </navigation>

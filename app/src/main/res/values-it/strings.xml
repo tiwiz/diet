@@ -43,5 +43,11 @@
     <string name="empty_progress_message">Nessuna misurazione registrata.</string>
     <string name="cookies_title">Biscotti</string>
     <string name="empty_mandatory_field_error">Questa informazione è obbligatoria</string>
+    <string name="new_serving_title">Nuova porzione</string>
+    <string name="food_description_hint">Descrizione</string>
+    <string name="food_number_hint">Quantità</string>
+    <string name="food_unit_hint">Unità</string>
+    <string name="save_new_food">Salva</string>
+    <string name="food_type_hint">Tipo</string>
 
 </resources>
