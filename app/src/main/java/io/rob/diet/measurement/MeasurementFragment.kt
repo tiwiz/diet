@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -36,6 +37,15 @@ class MeasurementFragment : BottomSheetDialogFragment() {
         binding.saveButton.setOnClickListener { saveData() }
 
         binding.setOnFocusBehaviour()
+
+        binding.hip.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                saveData()
+                true
+            } else {
+                false
+            }
+        }
 
         return binding.root
     }

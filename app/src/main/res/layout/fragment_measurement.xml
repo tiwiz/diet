@@ -48,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/weight_hint"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/bmi" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -66,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/bmi"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/body_fat" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +86,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/body_fat"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/waist" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -136,7 +139,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hip"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/save_button" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

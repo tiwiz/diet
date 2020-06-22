@@ -4,16 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
+import androidx.core.view.inputmethod.EditorInfoCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.R
 import io.rob.diet.common.setOnFocusBehaviour
 import io.rob.diet.common.validOrSetError
 import io.rob.diet.databinding.FragmentNewMealBinding
 
 
+@AndroidEntryPoint
 class NewMealFragment : BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentNewMealBinding
@@ -40,6 +44,15 @@ class NewMealFragment : BottomSheetDialogFragment() {
             viewModel.onFoodTypeSelected(position)
         }
 
+        binding.foodType.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                saveData()
+                true
+            } else {
+                false
+            }
+        }
+
         binding.btnSave.setOnClickListener { saveData() }
 
         return binding.root
@@ -58,13 +71,8 @@ class NewMealFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private val FragmentNewMealBinding.layouts
-        get() = listOf(
-            foodDescriptionLayout, foodUnitLayout
-        )
-
     private fun FragmentNewMealBinding.checkFormValidity(): Boolean =
-        layouts.all { it.validOrSetError(errorMessage) } && checkComboBoxValidity()
+        foodDescriptionLayout.validOrSetError(errorMessage) && checkComboBoxValidity()
 
     private fun FragmentNewMealBinding.checkComboBoxValidity(): Boolean =
         if (viewModel.isValidFoodType()) {
@@ -75,7 +83,8 @@ class NewMealFragment : BottomSheetDialogFragment() {
         }
 
     private fun FragmentNewMealBinding.setOnFocusBehaviour() =
-        (layouts + foodTypeLayout).forEach { it.setOnFocusBehaviour() }
+        listOf(foodDescriptionLayout, foodUnitLayout ,foodTypeLayout)
+            .forEach { it.setOnFocusBehaviour() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
