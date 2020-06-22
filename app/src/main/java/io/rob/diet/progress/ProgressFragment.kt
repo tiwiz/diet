@@ -15,6 +15,7 @@ import io.rob.diet.common.Lce
 import io.rob.diet.common.updateExternalColors
 import io.rob.diet.databinding.FragmentProgressBinding
 import io.rob.diet.measurement.MeasureViewModel
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ProgressFragment : Fragment() {
@@ -57,6 +58,8 @@ class ProgressFragment : Fragment() {
         sharedViewModel.status.observe(viewLifecycleOwner, Observer {
             viewModel.fetchRecap()
         })
+
+        viewModel.fetchRecap()
     }
 
     private fun onLoading() {
@@ -76,10 +79,5 @@ class ProgressFragment : Fragment() {
         binding.emptyProgress.visibility = View.GONE
         binding.progressView.visibility = View.VISIBLE
         binding.progressView.bind(recap)
-    }
-
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchRecap()
     }
 }

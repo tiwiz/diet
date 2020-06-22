@@ -2,6 +2,7 @@ package io.rob.diet.storage
 
 import io.rob.diet.common.AuthenticationManager
 import io.rob.diet.progress.Measurement
+import timber.log.Timber
 import javax.inject.Inject
 
 class RepositoryProxy @Inject constructor(
@@ -12,8 +13,10 @@ class RepositoryProxy @Inject constructor(
 
     override suspend fun getMeasurements(): List<Measurement> =
         if (authenticationManager.isUserAuthenticated()) {
+            Timber.d("Fetching from remote")
             remoteRepository.getMeasurements()
         } else {
+            Timber.d("Fetching from local")
             localRepository.getMeasurements()
         }
 

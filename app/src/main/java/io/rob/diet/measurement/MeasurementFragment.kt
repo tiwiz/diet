@@ -40,12 +40,6 @@ class MeasurementFragment : BottomSheetDialogFragment() {
         binding.umbilicalWrapper.setOnFocusBehaviour()
         binding.hipWrapper.setOnFocusBehaviour()
 
-        viewModel.status.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                findNavController().navigateUp()
-            }
-        })
-
         return binding.root
     }
 
@@ -84,6 +78,7 @@ class MeasurementFragment : BottomSheetDialogFragment() {
             )
 
             viewModel.saveData(measurement)
+            findNavController().navigateUp()
         }
     }
 }
