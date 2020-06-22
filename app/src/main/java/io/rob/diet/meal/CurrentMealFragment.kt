@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -89,6 +90,7 @@ class CurrentMealFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        binding.btnAdd.isVisible = viewModel.canUserAddMeals()
         viewModel.fetchNextMeal()
     }
 }

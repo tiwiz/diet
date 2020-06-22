@@ -11,6 +11,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.R
+import io.rob.diet.common.setOnFocusBehaviour
+import io.rob.diet.common.validOrSetError
 import io.rob.diet.databinding.FragmentMeasurementBinding
 import io.rob.diet.progress.Measurement
 import org.threeten.bp.LocalDate
@@ -33,37 +35,25 @@ class MeasurementFragment : BottomSheetDialogFragment() {
         binding = FragmentMeasurementBinding.inflate(inflater, container, false)
         binding.saveButton.setOnClickListener { saveData() }
 
-        binding.weightWrapper.setOnFocusBehaviour()
-        binding.bmiWrapper.setOnFocusBehaviour()
-        binding.bodyFatWrapper.setOnFocusBehaviour()
-        binding.waistWrapper.setOnFocusBehaviour()
-        binding.umbilicalWrapper.setOnFocusBehaviour()
-        binding.hipWrapper.setOnFocusBehaviour()
+        binding.setOnFocusBehaviour()
 
         return binding.root
     }
 
-    private fun TextInputLayout.setOnFocusBehaviour() {
-        setOnFocusChangeListener { _, _ ->
-            error = null
-        }
-    }
-
-    private fun TextInputLayout.validOrSetError(): Boolean =
-        if (editText?.text.toString().isNotBlank()) {
-            true
-        } else {
-            error = errorMessage
-            false
-        }
-
     private fun TextInputLayout.floatValue(): Float =
         editText!!.text.toString().toFloat()
 
-    private fun FragmentMeasurementBinding.checkFormValidity(): Boolean =
-        listOf(weightWrapper, bmiWrapper, bodyFatWrapper,
+    private val FragmentMeasurementBinding.layouts
+        get() = listOf(
+            weightWrapper, bmiWrapper, bodyFatWrapper,
             waistWrapper, umbilicalWrapper, hipWrapper
-        ).all { it.validOrSetError() }
+        )
+
+    private fun FragmentMeasurementBinding.checkFormValidity(): Boolean =
+        layouts.all { it.validOrSetError(errorMessage) }
+
+    private fun FragmentMeasurementBinding.setOnFocusBehaviour() =
+        layouts.forEach { it.setOnFocusBehaviour() }
 
     private fun saveData() {
         if (binding.checkFormValidity()) {

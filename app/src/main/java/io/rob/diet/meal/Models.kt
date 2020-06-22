@@ -99,6 +99,13 @@ data class MealPortion(
     val type: FoodType
 )
 
+data class RemoteMealPortion(
+    val definition: String? = null,
+    val weight: Int? = null,
+    val unit: String? = null,
+    val type: String? = null
+)
+
 @Entity(tableName = "snack_portions")
 data class SnackPortion(
     @PrimaryKey val id: Int,

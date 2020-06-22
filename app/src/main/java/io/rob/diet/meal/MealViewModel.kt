@@ -5,13 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import io.rob.diet.common.AuthenticationManager
 import io.rob.diet.common.Lce
 import kotlinx.coroutines.launch
 
 class MealViewModel @ViewModelInject constructor(
     mealDecider: MealDecider,
     dayDecider: DayDecider,
-    private val mealRepository: MealRepository
+    private val mealRepository: MealRepository,
+    private val authenticationManager: AuthenticationManager
 ) : ViewModel() {
 
     private val _mealUi = MutableLiveData<Lce<MealUi>>()
@@ -26,6 +28,8 @@ class MealViewModel @ViewModelInject constructor(
     fun fetchNextMeal() {
         fetchMealWithParameters(currentMeal, currentDay)
     }
+
+    fun canUserAddMeals() = authenticationManager.isUserAuthenticated()
 
     fun fetchMealWithParameters(meal: Meal, day: Int) {
         viewModelScope.launch {
