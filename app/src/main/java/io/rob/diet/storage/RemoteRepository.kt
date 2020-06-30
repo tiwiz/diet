@@ -1,11 +1,13 @@
 package io.rob.diet.storage
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import io.rob.diet.common.await
+import io.rob.diet.common.logFailure
 import io.rob.diet.progress.Measurement
 import io.rob.diet.progress.RemoteMeasurements
 import io.rob.diet.progress.toMeasurement
@@ -27,7 +29,7 @@ class RemoteRepository @Inject constructor() : ProgressRepository {
 
     override suspend fun insertNewMeasurement(measurement: Measurement) {
         val elements = remoteMeasurements() + measurement.toRemoteMeasurements()
-        db.setValue(elements)
+        db.setValue(elements).logFailure()
     }
 
     companion object {

@@ -6,6 +6,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import io.rob.diet.common.await
+import io.rob.diet.common.logFailure
 import io.rob.diet.detail.DetailElement
 import io.rob.diet.meal.FoodType
 import io.rob.diet.meal.RemoteMealPortion
@@ -26,7 +27,7 @@ class RemotePortionsDao @Inject constructor() {
 
     suspend fun insertPersonalizedFood(portion: RemoteMealPortion) {
         val portions = remotePortions() + portion
-        db.setValue(portions)
+        db.setValue(portions).logFailure()
     }
 
     private fun RemoteMealPortion.toDetailElement(): DetailElement {

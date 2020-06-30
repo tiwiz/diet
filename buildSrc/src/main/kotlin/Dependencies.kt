@@ -22,6 +22,7 @@ object Versions {
     const val firebaseAnalytics = "17.4.3"
     const val firebaseUiAuth = "6.2.0"
     const val firebaseRealTimeDB = "19.3.0"
+    const val firebaseCrashlytics = "17.1.0"
 
     const val fbFlipper = "0.46.0"
     const val fbSoLoader = "0.9.0"
@@ -66,6 +67,7 @@ object Libraries {
     const val firebaseAnalytics = "com.google.firebase:firebase-analytics:${Versions.firebaseAnalytics}"
     const val firebaseUiAuth = "com.firebaseui:firebase-ui-auth:${Versions.firebaseUiAuth}"
     const val firebaseRealtimeDB = "com.google.firebase:firebase-database-ktx:${Versions.firebaseRealTimeDB}"
+    const val firebaseCrashlytics = "com.google.firebase:firebase-crashlytics:${Versions.firebaseCrashlytics}"
 
     const val fbFlipper = "com.facebook.flipper:flipper:${Versions.fbFlipper}"
     const val soLoader = "com.facebook.soloader:soloader:${Versions.fbSoLoader}"
