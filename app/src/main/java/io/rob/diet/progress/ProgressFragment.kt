@@ -35,7 +35,6 @@ class ProgressFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        updateExternalColors(R.color.progress_background_color)
 
         binding.btnAdd.setOnClickListener {
             val action = ProgressFragmentDirections.actionProgressFragmentToMeasurementFragment()
