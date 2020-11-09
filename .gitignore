@@ -16,3 +16,7 @@ buildSrc/build/
 app/google-services.json
 build/
 /.idea/.name
+/database-debug.log
+/firestore-debug.log
+/ui-debug.log
+/.firebaserc

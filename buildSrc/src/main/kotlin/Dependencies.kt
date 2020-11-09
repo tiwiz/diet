@@ -1,33 +1,33 @@
 object Versions {
 
-    const val ktx = "1.3.0"
-    const val appCompat = "1.1.0"
-    const val navigation = "2.3.0-rc01"
-    const val material = "1.3.0-alpha01"
+    const val ktx = "1.3.2"
+    const val appCompat = "1.2.0"
+    const val navigation = "2.3.1"
+    const val material = "1.3.0-alpha03"
     const val androidXLegacy = "1.0.0"
     const val threeTen = "1.2.4"
     const val room = "2.2.5"
-    const val coroutines = "1.3.7"
-    const val constraintLayout = "2.0.0-beta6"
-    const val fragmentKtx = "1.3.0-alpha06"
+    const val coroutines = "1.4.1"
+    const val constraintLayout = "2.0.4"
+    const val fragmentKtx = "1.3.0-beta01"
     const val lifecycle = "2.2.0"
     const val preferences = "1.1.1"
-    const val appStartup = "1.0.0-alpha01"
+    const val appStartup = "1.0.0"
     const val timber = "4.7.1"
 
-    const val dagger = "2.28"
-    const val daggerHiltAndroid = "2.28-alpha"
+    const val dagger = "2.29.1"
+    const val daggerHiltAndroid = "2.29-alpha"
     const val daggerHilt = "1.0.0-SNAPSHOT"
 
-    const val firebaseAnalytics = "17.4.3"
-    const val firebaseUiAuth = "6.2.0"
-    const val firebaseRealTimeDB = "19.3.0"
-    const val firebaseCrashlytics = "17.1.0"
+    const val firebaseAnalytics = "18.0.0"
+    const val firebaseUiAuth = "6.4.0"
+    const val firebaseRealTimeDB = "19.5.1"
+    const val firebaseCrashlytics = "17.2.2"
 
-    const val fbFlipper = "0.46.0"
+    const val fbFlipper = "0.64.0"
     const val fbSoLoader = "0.9.0"
 
-    const val coil = "0.11.0"
+    const val coil = "1.0.0"
 }
 
 object Libraries {

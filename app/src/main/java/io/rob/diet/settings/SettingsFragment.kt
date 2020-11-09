@@ -1,15 +1,14 @@
 package io.rob.diet.settings
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResultCallback
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import coil.api.load
+import coil.load
 import dagger.hilt.android.AndroidEntryPoint
 import io.rob.diet.R
 import io.rob.diet.common.Lce
