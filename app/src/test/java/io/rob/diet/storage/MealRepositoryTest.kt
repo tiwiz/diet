@@ -1,13 +1,8 @@
 package io.rob.diet.storage
 
 import assertk.assertThat
-import assertk.assertions.containsAll
-import assertk.assertions.isEqualTo
-import assertk.assertions.isTrue
-import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import io.rob.diet.R
-import io.rob.diet.meal.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
@@ -17,67 +12,67 @@ import org.junit.Test
 @ExperimentalCoroutinesApi
 class MealRepositoryTest {
 
-    private val lunchProteinPerDay = PortionPerDay(
+    private val lunchProteinPerDay = com.rob.foodlist.meal.PortionPerDay(
         id = 0,
         day = 1,
-        protein = Protein.COLD_CUTS,
-        meal = Meal.LUNCH
+        protein = com.rob.foodlist.meal.Protein.COLD_CUTS,
+        meal = com.rob.foodlist.meal.Meal.LUNCH
     )
 
-    private val dinnerProteinPerDay = PortionPerDay(
+    private val dinnerProteinPerDay = com.rob.foodlist.meal.PortionPerDay(
         id = 1,
         day = 1,
-        protein = Protein.PIZZA,
-        meal = Meal.DINNER
+        protein = com.rob.foodlist.meal.Protein.PIZZA,
+        meal = com.rob.foodlist.meal.Meal.DINNER
     )
 
-    private val breakfastSnack1 = SnackPortion(
+    private val breakfastSnack1 = com.rob.foodlist.meal.SnackPortion(
         id = 0,
         definition = BREAKFAST_SNACK_1,
         weight = 100,
         unit = "g",
-        meal = Meal.BREAKFAST,
+        meal = com.rob.foodlist.meal.Meal.BREAKFAST,
         group = 1,
-        type = FoodType.VEGGIES
+        type = com.rob.foodlist.meal.FoodType.VEGGIES
     )
 
-    private val breakfastSnack2 = SnackPortion(
+    private val breakfastSnack2 = com.rob.foodlist.meal.SnackPortion(
         id = 1,
         definition = BREAKFAST_SNACK_2,
         weight = 6,
         unit = null,
-        meal = Meal.BREAKFAST,
+        meal = com.rob.foodlist.meal.Meal.BREAKFAST,
         group = 2,
-        type = FoodType.VEGGIES
+        type = com.rob.foodlist.meal.FoodType.VEGGIES
     )
 
-    private val afternoonSnack = SnackPortion(
+    private val afternoonSnack = com.rob.foodlist.meal.SnackPortion(
         id = 2,
         definition = AFTERNOON_SNACK,
         weight = 6,
         unit = null,
-        meal = Meal.AFTERNOON_SNACK,
+        meal = com.rob.foodlist.meal.Meal.AFTERNOON_SNACK,
         group = 2,
-        type = FoodType.VEGGIES
+        type = com.rob.foodlist.meal.FoodType.VEGGIES
     )
 
-    private val mockDao: DietDao = mock {
+    private val mockDao: com.rob.foodlist.storage.DietDao = mock {
         runBlocking {
-            on(it.getPortionByMealAndDay(Meal.LUNCH, 1)) doReturn lunchProteinPerDay
-            on(it.getPortionByMealAndDay(Meal.DINNER, 1)) doReturn dinnerProteinPerDay
-            on(it.getSnackPortionsByMeal(Meal.BREAKFAST)) doReturn listOf(
+            on(it.getPortionByMealAndDay(com.rob.foodlist.meal.Meal.LUNCH, 1)) doReturn lunchProteinPerDay
+            on(it.getPortionByMealAndDay(com.rob.foodlist.meal.Meal.DINNER, 1)) doReturn dinnerProteinPerDay
+            on(it.getSnackPortionsByMeal(com.rob.foodlist.meal.Meal.BREAKFAST)) doReturn listOf(
                 breakfastSnack1,
                 breakfastSnack2
             )
-            on(it.getSnackPortionsByMeal(Meal.AFTERNOON_SNACK)) doReturn listOf(afternoonSnack)
+            on(it.getSnackPortionsByMeal(com.rob.foodlist.meal.Meal.AFTERNOON_SNACK)) doReturn listOf(afternoonSnack)
         }
     }
 
-    private val repository = MealRepository(mockDao)
+    private val repository = com.rob.foodlist.meal.MealRepository(mockDao)
 
     @Test
     fun `verify usual main course corresponds of 4 pieces`() = runBlockingTest {
-        val uiData = repository.fetchDataForMealAndDay(Meal.LUNCH, 1)
+        val uiData = repository.fetchDataForMealAndDay(com.rob.foodlist.meal.Meal.LUNCH, 1)
 
         assertThat(uiData.size).isEqualTo(4)
         assertThat(uiData[0].typeDetail).isEqualTo("carbs")
@@ -88,7 +83,7 @@ class MealRepositoryTest {
 
     @Test
     fun `verify free main course only has pizza and fruit`() = runBlockingTest {
-        val uiData = repository.fetchDataForMealAndDay(Meal.DINNER, 1)
+        val uiData = repository.fetchDataForMealAndDay(com.rob.foodlist.meal.Meal.DINNER, 1)
 
         assertThat(uiData.size).isEqualTo(2)
         assertThat(uiData[0].typeDetail).isEqualTo("pizza")
@@ -97,7 +92,7 @@ class MealRepositoryTest {
 
     @Test
     fun `verify breakfast items have icons associated`() = runBlockingTest {
-        val uiData = repository.fetchDataForMealAndDay(Meal.BREAKFAST, 1)
+        val uiData = repository.fetchDataForMealAndDay(com.rob.foodlist.meal.Meal.BREAKFAST, 1)
 
         val item1 = "$BREAKFAST_SNACK_1 (100 g)"
         val item2 = "$BREAKFAST_SNACK_2 (6)"
@@ -112,7 +107,7 @@ class MealRepositoryTest {
 
     @Test
     fun `verify snacks items have no icons`() = runBlockingTest {
-        val uiData = repository.fetchDataForMealAndDay(Meal.AFTERNOON_SNACK, 1)
+        val uiData = repository.fetchDataForMealAndDay(com.rob.foodlist.meal.Meal.AFTERNOON_SNACK, 1)
 
         assertThat(uiData.all { it.iconRes == null }).isTrue()
     }

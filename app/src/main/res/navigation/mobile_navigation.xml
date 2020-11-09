@@ -3,28 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/currentMealFragment">
+    app:startDestination="@+id/progressFragment">
 
     <fragment
-        android:id="@+id/currentMealFragment"
-        android:name="io.rob.diet.meal.CurrentMealFragment"
-        android:label="CurrentMealFragment"
-        tools:layout="@layout/fragment_current_meal">
-        <action
-            android:id="@+id/action_currentMealFragment_to_alternativeMealFragment"
-            app:destination="@id/alternativeMealFragment" />
-        <action
-            android:id="@+id/action_currentMealFragment_to_foodDetailFragment"
-            app:destination="@id/foodDetailFragment" />
-        <action
-            android:id="@+id/action_currentMealFragment_to_newMealFragment"
-            app:destination="@id/newMealFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/progressFragment"
+        android:id="@id/progressFragment"
         android:name="io.rob.diet.progress.ProgressFragment"
         android:label="fragment_progress"
-        tools:layout="@layout/fragment_progress" >
+        tools:layout="@layout/fragment_progress">
         <action
             android:id="@+id/action_progressFragment_to_measurementFragment"
             app:destination="@id/measurementFragment" />
@@ -42,30 +27,4 @@
         android:name="io.rob.diet.measurement.MeasurementFragment"
         android:label="fragment_measurement"
         tools:layout="@layout/fragment_measurement" />
-    <dialog
-        android:id="@+id/alternativeMealFragment"
-        android:name="io.rob.diet.meal.AlternativeMealFragment"
-        android:label="fragment_alternative_meal"
-        tools:layout="@layout/fragment_alternative_meal" >
-        <argument
-            android:name="meal"
-            app:argType="string" />
-        <argument
-            android:name="day"
-            app:argType="integer" />
-    </dialog>
-    <dialog
-        android:id="@+id/foodDetailFragment"
-        android:name="io.rob.diet.detail.FoodDetailFragment"
-        android:label="fragment_food_deailt"
-        tools:layout="@layout/fragment_food_detail" >
-        <argument
-            android:name="foodType"
-            app:argType="string" />
-    </dialog>
-    <dialog
-        android:id="@+id/newMealFragment"
-        android:name="io.rob.diet.meal.NewMealFragment"
-        android:label="fragment_new_meal"
-        tools:layout="@layout/fragment_new_meal" />
 </navigation>

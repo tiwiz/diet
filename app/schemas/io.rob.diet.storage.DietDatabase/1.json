@@ -2,146 +2,8 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7bb25c939525b8c092ffb60a1e9be5c0",
+    "identityHash": "769b94d7fdf6e5d40ab0eb9ecb8197dd",
     "entities": [
-      {
-        "tableName": "meal_portions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `definition` TEXT NOT NULL, `weight` INTEGER NOT NULL, `unit` TEXT, `type` TEXT NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "definition",
-            "columnName": "definition",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "weight",
-            "columnName": "weight",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "unit",
-            "columnName": "unit",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "type",
-            "columnName": "type",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "snack_portions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `definition` TEXT NOT NULL, `weight` INTEGER NOT NULL, `unit` TEXT, `meal` TEXT NOT NULL, `group` INTEGER NOT NULL, `type` TEXT, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "definition",
-            "columnName": "definition",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "weight",
-            "columnName": "weight",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "unit",
-            "columnName": "unit",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "meal",
-            "columnName": "meal",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "group",
-            "columnName": "group",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "type",
-            "columnName": "type",
-            "affinity": "TEXT",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "portions",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `day` INTEGER NOT NULL, `protein` TEXT NOT NULL, `meal` TEXT NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "day",
-            "columnName": "day",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "protein",
-            "columnName": "protein",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "meal",
-            "columnName": "meal",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
       {
         "tableName": "progress",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `weight` REAL NOT NULL, `bmi` REAL NOT NULL, `waist` REAL NOT NULL, `umbilical` REAL NOT NULL, `hip` REAL NOT NULL, `bodyFatPct` REAL NOT NULL, `date` TEXT NOT NULL)",
@@ -208,7 +70,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7bb25c939525b8c092ffb60a1e9be5c0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '769b94d7fdf6e5d40ab0eb9ecb8197dd')"
     ]
   }
 }

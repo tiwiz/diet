@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.8">
       <module name="Diet.app" target="11" />
       <module name="Diet.buildSrc" target="11" />
+      <module name="Diet.foodlist" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

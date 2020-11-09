@@ -1,0 +1,26 @@
+<resources>
+
+    <style name="MealCheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:paddingHorizontal">@dimen/checkbox_horizontal_padding</item>
+        <item name="android:paddingVertical">@dimen/checkbox_vertical_padding</item>
+        <item name="android:minWidth">@dimen/checkbox_big_min_width</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@color/check_box_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginHorizontal">@dimen/checkbox_horizontal_margin</item>
+    </style>
+
+    <style name="DayCheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:paddingHorizontal">@dimen/checkbox_horizontal_padding</item>
+        <item name="android:paddingVertical">@dimen/checkbox_vertical_padding</item>
+        <item name="android:minWidth">@dimen/checkbox_big_min_width</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textColor">@color/check_box_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginHorizontal">@dimen/checkbox_horizontal_margin</item>
+        <item name="android:background">@drawable/day_checkbox_background</item>
+    </style>
+
+</resources>

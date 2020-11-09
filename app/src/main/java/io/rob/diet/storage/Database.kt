@@ -1,20 +1,14 @@
 package io.rob.diet.storage
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import io.rob.diet.meal.MealPortion
-import io.rob.diet.meal.PortionPerDay
-import io.rob.diet.meal.SnackPortion
+import androidx.room.*
 import io.rob.diet.progress.Measurement
+import org.threeten.bp.LocalDate
 
-@Database(entities = [MealPortion::class, SnackPortion::class, PortionPerDay::class, Measurement::class], version = 1)
-@TypeConverters(ProteinTypeConverter::class, MealTypeConverter::class, FoodTypeConverter::class, LocalDateTypeConverter::class)
+@Database(entities = [Measurement::class], version = 1)
+@TypeConverters(LocalDateTypeConverter::class)
 abstract class DietDatabase : RoomDatabase() {
 
-    abstract fun dietDao() : DietDao
 
     abstract fun progressDao() : ProgressDao
 
@@ -25,4 +19,13 @@ abstract class DietDatabase : RoomDatabase() {
                 .createFromAsset("database/starting_database.db")
                 .build()
     }
+}
+
+class LocalDateTypeConverter {
+
+    @TypeConverter
+    fun toDatabase(localDate: LocalDate) = localDate.toString()
+
+    @TypeConverter
+    fun fromDatabase(value: String) = LocalDate.parse(value)
 }
