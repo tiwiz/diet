@@ -33,6 +33,10 @@ android {
         }
     }
 
+    buildFeatures {
+        viewBinding true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -49,10 +53,6 @@ android {
             java.srcDir file('src/debug/java')
             manifest.srcFile file('src/debug/AndroidManifest.xml')
         }
-    }
-
-    buildFeatures {
-        viewBinding = true
     }
 }
 
