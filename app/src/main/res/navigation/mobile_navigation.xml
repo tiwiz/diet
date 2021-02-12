@@ -22,7 +22,7 @@
         android:name="io.rob.diet.settings.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
-    <dialog
+    <fragment
         android:id="@+id/measurementFragment"
         android:name="io.rob.diet.measurement.MeasurementFragment"
         android:label="fragment_measurement"
