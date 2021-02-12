@@ -52,5 +52,6 @@
     <string name="food_unit_hint">Unit</string>
     <string name="save_new_food">Save</string>
     <string name="food_type_hint">Food type</string>
+    <string name="title_activity_main2">My Compose App</string>
 
 </resources>
