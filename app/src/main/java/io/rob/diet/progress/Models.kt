@@ -27,6 +27,26 @@ data class RemoteMeasurements(
     val date: Long? = -1L
 )
 
+data class UiMeasurement(
+    var weight: Float = -1f,
+    var bmi: Float = -1f,
+    var waist: Float = -1f,
+    var umbilical: Float = -1f,
+    var hip: Float = -1f,
+    var bodyFatPct: Float = -1f,
+) {
+
+    fun toMeasurement() = Measurement(
+        weight = weight,
+        bmi = bmi,
+        waist = waist,
+        umbilical = umbilical,
+        hip = hip,
+        bodyFatPct = bodyFatPct,
+        date = LocalDate.now()
+    )
+}
+
 fun Measurement.toRemoteMeasurements() =
     RemoteMeasurements(
         weight = weight,

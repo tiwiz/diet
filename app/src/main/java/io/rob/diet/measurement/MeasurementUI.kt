@@ -1,10 +1,13 @@
 package io.rob.diet.measurement
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
@@ -12,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -20,33 +25,41 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.viewModel
 import io.rob.diet.R
+import io.rob.diet.progress.UiMeasurement
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
 
 @Composable
 fun LabeledInput(
     label: String,
+    modifier: Modifier = Modifier,
     updater: (String) -> Unit = {},
+    focusRequester: FocusRequester,
     isLast: Boolean = false
 ) {
     val text = remember { mutableStateOf("") }
+    var isValid = true
+
     OutlinedTextField(
         value = text.value,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        onValueChange = {
-            text.value = it
-            updater(it)
-        },
+        onValueChange = { text.value = it },
         label = { Text(label) },
-        onImeActionPerformed = { imeAction, _ ->
-            if (imeAction == ImeAction.Next) {
-                println("Next")
-            } else {
-                println("Send")
+        onImeActionPerformed = { imeAction, controller ->
+            if (isValid && imeAction == ImeAction.Next) {
+                focusRequester.requestFocus()
+                updater(text.value)
+            } else if (isValid) {
+                updater(text.value)
+                controller?.hideSoftwareKeyboard()
             }
+        },
+        onTextInputStarted = {
+            isValid = text.value.toFloatOrNull() != null
         },
         keyboardOptions = KeyboardOptions(
             autoCorrect = false,
@@ -56,52 +69,84 @@ fun LabeledInput(
             } else {
                 ImeAction.Next
             }
-        )
+        ),
+        isErrorValue = !isValid
     )
 }
 
 @Composable
-fun MeasurementUI() {
-    LazyColumn {
-        item {
-            Text(
-                text = stringResource(id = R.string.new_measurements_title),
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center,
-                fontWeight = FontWeight.ExtraLight
-            )
+fun MeasurementUI(completion: (UiMeasurement) -> Unit = {}) {
+
+    val focusRequesterBmi = remember { FocusRequester() }
+    val focusRequesterBodyFat = remember { FocusRequester() }
+    val focusRequesterWaist = remember { FocusRequester() }
+    val focusRequesterUmbilical = remember { FocusRequester() }
+    val focusRequesterHip = remember { FocusRequester() }
+
+    val measurement = remember { UiMeasurement() }
+
+    Column(
+        modifier = Modifier.verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Text(
+            text = stringResource(id = R.string.new_measurements_title),
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.ExtraLight
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.weight_hint),
+            focusRequester = focusRequesterBmi,
+            updater = { weight -> measurement.weight = weight.toFloat() }
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.bmi),
+            modifier = Modifier.focusRequester(focusRequesterBmi),
+            focusRequester = focusRequesterBodyFat,
+            updater = { bmi -> measurement.bmi = bmi.toFloat() }
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.body_fat),
+            modifier = Modifier.focusRequester(focusRequesterBodyFat),
+            focusRequester = focusRequesterWaist
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.waist),
+            modifier = Modifier.focusRequester(focusRequesterWaist),
+            focusRequester = focusRequesterUmbilical,
+            updater = { waist -> measurement.waist = waist.toFloat() }
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.umbilical),
+            modifier = Modifier.focusRequester(focusRequesterUmbilical),
+            focusRequester = focusRequesterHip,
+            updater = { umbilical -> measurement.umbilical = umbilical.toFloat() }
+        )
+
+        LabeledInput(
+            label = stringResource(id = R.string.hip),
+            modifier = Modifier.focusRequester(focusRequesterHip),
+            focusRequester = focusRequesterHip,
+            isLast = true,
+            updater = { hip -> measurement.hip = hip.toFloat() }
+        )
+
+        Button(
+            onClick = { completion(measurement) },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text(text = stringResource(id = R.string.save_new_food).toUpperCase(Locale.getDefault()))
         }
-        item {
-            LabeledInput(label = stringResource(id = R.string.weight_hint))
-        }
-        item {
-            LabeledInput(label = stringResource(id = R.string.bmi))
-        }
-        item {
-            LabeledInput(label = stringResource(id = R.string.body_fat))
-        }
-        item {
-            LabeledInput(label = stringResource(id = R.string.waist))
-        }
-        item {
-            LabeledInput(label = stringResource(id = R.string.umbilical))
-        }
-        item {
-            LabeledInput(
-                label = stringResource(id = R.string.hip),
-                isLast = true
-            )
-        }
-        item {
-            Button(
-                onClick = { println("Click") },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text(text = stringResource(id = R.string.save_new_food).toUpperCase(Locale.getDefault()))
-            }
-        }
+
     }
 }
 
@@ -114,7 +159,7 @@ fun MeasurementUI() {
 )
 @Composable
 fun Preview_Day() {
-    DietTheme {
+    DietTheme(darkTheme = false) {
         MeasurementUI()
     }
 }
@@ -128,7 +173,7 @@ fun Preview_Day() {
 )
 @Composable
 fun Preview_Night() {
-    DietTheme {
+    DietTheme(darkTheme = true) {
         MeasurementUI()
     }
 }
