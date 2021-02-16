@@ -12,8 +12,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.stringResource
@@ -35,7 +37,7 @@ fun LineChart(
     val lineColor = MaterialTheme.colors.primary
 
     val lastTap: MutableState<Float?> = mutableStateOf(null)
-    val lastSelectedIndex = mutableStateOf(-1)
+    val lastSelectedIndex = remember { mutableStateOf(-1) }
 
     Column(
         Modifier
@@ -59,13 +61,17 @@ fun LineChart(
             .preferredHeight(200.dp)
             .padding(16.dp)
             .pointerInteropFilter {
-                if (it.action == MotionEvent.ACTION_DOWN) {
-                    lastTap.value = it.x
-                    true
-                } else {
-                    false
+                when (it.action) {
+                    MotionEvent.ACTION_DOWN -> {
+                        lastTap.value = it.x
+                        true
+                    }
+                    MotionEvent.ACTION_UP -> {
+                        lastSelectedIndex.value = -1
+                        true
+                    }
+                    else -> false
                 }
-
             },
             onDraw = {
 
@@ -127,6 +133,22 @@ fun LineChart(
                         }
 
                     lastSelectedIndex.value = index
+
+                    /**
+                     * Draw a rectangle column to highlight the value
+                     */
+
+                    val startingX = (index * horizontalFactor) - (horizontalFactor / 2)
+
+                    val topLeft = Offset(x = startingX, y = 0f)
+                    val size = Size(width = horizontalFactor, height = height)
+
+                    drawRect(
+                        color = pointColor,
+                        topLeft = topLeft,
+                        size = size,
+                        alpha = .5f
+                    )
                 }
             })
 
@@ -140,12 +162,24 @@ fun LineChart(
         )
 
         points.forEachIndexed { index, value ->
-            val modifier = Modifier.padding(all = 8.dp)
+
+            var backModifier = Modifier
+                .fillMaxWidth()
+            var textColor = MaterialTheme.typography.body1.color
 
             if (index == lastSelectedIndex.value) {
-                modifier.background(Color.Red)
+                backModifier = backModifier.background(MaterialTheme.colors.primary)
+                textColor = MaterialTheme.colors.background
             }
-            Text(text = "${descriptions[index]}: $value", modifier = modifier)
+
+            Box(modifier = backModifier) {
+                Text(
+                    text = "${descriptions[index]}: $value",
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                    color = textColor
+                )
+            }
+
         }
     }
 }
