@@ -94,10 +94,8 @@ fun MeasurementUI(completion: (UiMeasurement) -> Unit = {}) {
         Text(
             text = stringResource(id = R.string.new_measurements_title),
             modifier = Modifier.fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.ExtraLight,
             color = MaterialTheme.colors.primary,
-            fontSize = 24f.sp
+            style = MaterialTheme.typography.h1
         )
 
         LabeledInput(

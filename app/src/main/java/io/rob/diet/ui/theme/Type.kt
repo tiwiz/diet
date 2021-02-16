@@ -1,10 +1,13 @@
 package io.rob.diet.ui.theme
 
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.sp
+
 
 // Set of Material typography styles to start with
 val typography = Typography(
@@ -12,6 +15,11 @@ val typography = Typography(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
+    ),
+    h1 = TextStyle(
+        textAlign = TextAlign.Center,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 24f.sp
     )
     /* Other default text styles to override
     button = TextStyle(

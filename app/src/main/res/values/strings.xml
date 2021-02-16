@@ -53,4 +53,6 @@
     <string name="save_new_food">Save</string>
     <string name="food_type_hint">Food type</string>
 
+    <string name="history_title">History</string>
+
 </resources>

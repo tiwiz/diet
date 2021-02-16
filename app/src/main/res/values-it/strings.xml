@@ -49,5 +49,6 @@
     <string name="food_unit_hint">Unità</string>
     <string name="save_new_food">Salva</string>
     <string name="food_type_hint">Tipo</string>
+    <string name="history_title">Storico</string>
 
 </resources>

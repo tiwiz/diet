@@ -14,26 +14,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInteropFilter
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import io.rob.diet.R
 import io.rob.diet.ui.theme.DietTheme
+import io.rob.diet.ui.theme.typography
 import kotlin.math.roundToInt
 import kotlin.math.truncate
-
+import kotlin.reflect.KProperty
 
 @Composable
 fun LineChart(
     title: String,
-    points: Array<Float>
+    points: Array<Float>,
+    descriptions: Array<String>
 ) {
     val pointColor = MaterialTheme.colors.primaryVariant
     val lineColor = MaterialTheme.colors.primary
 
-    val lastTap : MutableState<Float?> = mutableStateOf(null)
+    val lastTap: MutableState<Float?> = mutableStateOf(null)
     val lastSelectedIndex = mutableStateOf(-1)
 
     Column(
@@ -49,10 +53,8 @@ fun LineChart(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(bottom = 24.dp),
-            textAlign = TextAlign.Center,
-            fontWeight = FontWeight.ExtraLight,
             color = MaterialTheme.colors.primary,
-            fontSize = 24f.sp
+            style = MaterialTheme.typography.h1
         )
 
         Canvas(modifier = Modifier
@@ -69,6 +71,7 @@ fun LineChart(
 
             },
             onDraw = {
+
                 val width = size.width
                 val height = size.height
 
@@ -119,7 +122,8 @@ fun LineChart(
                      */
                     val index =
                         if ((upperBound.toFloat() - column) < (column - lowerBound)
-                            && upperBound < points.size) {
+                            && upperBound < points.size
+                        ) {
                             upperBound
                         } else {
                             lowerBound
@@ -129,15 +133,22 @@ fun LineChart(
                 }
             })
 
-        Text(text = "Storico")
+        Text(
+            text = stringResource(id = R.string.history_title),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 16.dp),
+            color = MaterialTheme.colors.primary,
+            style = MaterialTheme.typography.h1
+        )
 
         points.forEachIndexed { index, value ->
-            val modifier = Modifier
+            val modifier = Modifier.padding(all = 8.dp)
 
             if (index == lastSelectedIndex.value) {
                 modifier.background(Color.Red)
             }
-            Text(text = "Value at index $index is $value", modifier = modifier)
+            Text(text = "${descriptions[index]}: $value", modifier = modifier)
         }
     }
 }
@@ -152,8 +163,20 @@ fun LineChart(
 @Composable
 fun LineChartPreview_Day() {
     val points = arrayOf(3f, 2f, 8f, 5f, 10f, 11f, 1f, 0f, 3f, 2f)
+    val descriptions = arrayOf(
+        "Mon, May 1st 2020",
+        "Tue, June 2nd 2020",
+        "Wed, July 3rd 2020",
+        "Thu, August 4th 2020",
+        "Fri, September 5th 2020",
+        "Sat, October 6th 2020",
+        "Sun, November 7th 2020",
+        "Mon, December 8th 2020",
+        "Tue, January 9th 2020",
+        "Wed, February 10th 2020"
+    )
     DietTheme(darkTheme = false) {
-        LineChart("Line by day", points)
+        LineChart("Line by day", points, descriptions)
     }
 }
 
@@ -167,7 +190,18 @@ fun LineChartPreview_Day() {
 @Composable
 fun LineChartPreview_Night() {
     val points = arrayOf(5f, 4f, 3f, 2f, 1f, 0f, 3f, 6f, 9f)
+    val descriptions = arrayOf(
+        "Tue, June 2nd 2020",
+        "Wed, July 3rd 2020",
+        "Thu, August 4th 2020",
+        "Fri, September 5th 2020",
+        "Sat, October 6th 2020",
+        "Sun, November 7th 2020",
+        "Mon, December 8th 2020",
+        "Tue, January 9th 2020",
+        "Wed, February 10th 2020"
+    )
     DietTheme(darkTheme = true) {
-        LineChart("Line by night", points)
+        LineChart("Line by night", points, descriptions)
     }
 }
