@@ -1,9 +1,20 @@
 package io.rob.diet.progress
 
 import android.content.res.Configuration
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import io.rob.diet.R
 import io.rob.diet.charts.LineChart
 import io.rob.diet.ui.theme.DietTheme
 
@@ -12,9 +23,64 @@ fun ElementUI(
     title: String,
     startingValue: Float,
     endingValue: Float,
+    delta: Float,
     clickBehaviour: () -> Unit = {}
 ) {
+    Box(modifier = Modifier
+        .fillMaxWidth()
+        .padding(horizontal = 8.dp)
+        .clickable {
+            clickBehaviour()
+        }) {
+        Box(modifier = Modifier.padding(top = 18.dp)) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(
+                        border = BorderStroke(width = 2.dp, color = Color.Red),
+                        shape = RoundedCornerShape(8.dp)
+                    )
+                    .padding(top = 24.dp, start = 8.dp, end = 8.dp, bottom = 8.dp)
+            ) {
+                Row {
+//                Image(
+//                    bitmap = imageResource(id = R.drawable.ic_history),
+//                    contentDescription = ""
+//                )
+                    Text(text = "$startingValue")
+//                Image(
+//                    bitmap = imageResource(id = R.drawable.ic_last_check),
+//                    contentDescription = ""
+//                )
+                    Text(text = "$endingValue")
+                }
 
+                Row {
+//                Image(
+//                    bitmap = imageResource(id = R.drawable.ic_progress),
+//                    contentDescription = ""
+//                )
+                    Text(
+                        text = "$delta"
+                    )
+                }
+            }
+        }
+
+        Box(
+            modifier = Modifier.fillMaxWidth(),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                title, modifier = Modifier
+                    .background(MaterialTheme.colors.background)
+                    .padding(bottom = 24.dp),
+                color = MaterialTheme.colors.primary,
+                style = MaterialTheme.typography.h1
+            )
+        }
+
+    }
 }
 
 @Preview(
@@ -25,9 +91,9 @@ fun ElementUI(
     uiMode = Configuration.UI_MODE_NIGHT_NO
 )
 @Composable
-fun LineChartPreview_Day() {
+fun ProgressUI_Day() {
     DietTheme(darkTheme = false) {
-        ElementUI(title = "Test Day", startingValue = 25f, endingValue = 100f)
+        ElementUI(title = "Test Day", startingValue = 25f, endingValue = 100f, delta = 5f)
     }
 }
 
@@ -39,8 +105,8 @@ fun LineChartPreview_Day() {
     uiMode = Configuration.UI_MODE_NIGHT_YES
 )
 @Composable
-fun LineChartPreview_Night() {
+fun ProgressUI_Night() {
     DietTheme(darkTheme = true) {
-        ElementUI(title = "Test Day", startingValue = 25f, endingValue = 100f)
+        ElementUI(title = "Test Day", startingValue = 25f, endingValue = 100f, delta = 5f)
     }
 }
