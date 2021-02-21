@@ -36,7 +36,7 @@ fun LineChart(
     val pointColor = MaterialTheme.colors.primaryVariant
     val lineColor = MaterialTheme.colors.primary
 
-    val lastTap: MutableState<Float?> = mutableStateOf(null)
+    val lastTap: MutableState<Float?> = remember { mutableStateOf(null) }
     val lastSelectedIndex = remember { mutableStateOf(-1) }
 
     Column(
@@ -67,6 +67,7 @@ fun LineChart(
                         true
                     }
                     MotionEvent.ACTION_UP -> {
+                        lastTap.value = null
                         lastSelectedIndex.value = -1
                         true
                     }

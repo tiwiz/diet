@@ -35,6 +35,12 @@ fun DietTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable()
         LightColorPalette
     }
 
+    val typography = if (darkTheme) {
+        darkThemeTypography
+    } else {
+        lightThemeTypography
+    }
+
     MaterialTheme(
         colors = colors,
         typography = typography,
