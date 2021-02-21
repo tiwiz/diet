@@ -19,7 +19,12 @@ val lightThemeTypography = Typography(
     h1 = TextStyle(
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.ExtraLight,
-        fontSize = 24f.sp
+        fontSize = 24.sp
+    ),
+    h2 = TextStyle(
+        textAlign = TextAlign.Center,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 20.sp
     )
     /* Other default text styles to override
     button = TextStyle(
@@ -45,7 +50,12 @@ val darkThemeTypography = Typography(
     h1 = TextStyle(
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.ExtraLight,
-        fontSize = 24f.sp
+        fontSize = 24.sp
+    ),
+    h2 = TextStyle(
+        textAlign = TextAlign.Center,
+        fontWeight = FontWeight.ExtraLight,
+        fontSize = 20.sp
     )
     /* Other default text styles to override
     button = TextStyle(

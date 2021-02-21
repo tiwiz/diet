@@ -21,4 +21,6 @@
     <color name="meal_text_color">#FFFFFF</color>
 
     <color name="settings_background_color">#107E4E</color>
+
+    <color name="imageTint">#202020</color>
 </resources>
