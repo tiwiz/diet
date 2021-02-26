@@ -21,4 +21,13 @@ data class RecapUI(
     val bodyFatPctDelta: Float
 )
 
+data class RecapElement(
+    val start: Float,
+    val end: Float
+) {
+    val delta = end - start
+}
+
+typealias ComposeRecapUI = Map<Int, RecapElement>
+
 class EmptyRecapException : IllegalArgumentException()
