@@ -43,36 +43,36 @@ fun LabeledInput(
     val text = remember { mutableStateOf("") }
     var isValid = true
 
-    OutlinedTextField(
-        value = text.value,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
-        onValueChange = { text.value = it },
-        label = { Text(label) },
-        onImeActionPerformed = { imeAction, controller ->
-            if (isValid && imeAction == ImeAction.Next) {
-                focusRequester.requestFocus()
-                updater(text.value)
-            } else if (isValid) {
-                updater(text.value)
-                controller?.hideSoftwareKeyboard()
-            }
-        },
-        onTextInputStarted = {
-            isValid = text.value.toFloatOrNull() != null
-        },
-        keyboardOptions = KeyboardOptions(
-            autoCorrect = false,
-            keyboardType = KeyboardType.Number,
-            imeAction = if (isLast) {
-                ImeAction.Send
-            } else {
-                ImeAction.Next
-            }
-        ),
-        isErrorValue = !isValid
-    )
+//    OutlinedTextField(
+//        value = text.value,
+//        modifier = modifier
+//            .fillMaxWidth()
+//            .padding(horizontal = 16.dp, vertical = 8.dp),
+//        onValueChange = { text.value = it },
+//        label = { Text(label) },
+//        onImeActionPerformed = { imeAction, controller ->
+//            if (isValid && imeAction == ImeAction.Next) {
+//                focusRequester.requestFocus()
+//                updater(text.value)
+//            } else if (isValid) {
+//                updater(text.value)
+//                controller?.hideSoftwareKeyboard()
+//            }
+//        },
+//        onTextInputStarted = {
+//            isValid = text.value.toFloatOrNull() != null
+//        },
+//        keyboardOptions = KeyboardOptions(
+//            autoCorrect = false,
+//            keyboardType = KeyboardType.Number,
+//            imeAction = if (isLast) {
+//                ImeAction.Send
+//            } else {
+//                ImeAction.Next
+//            }
+//        ),
+//        isErrorValue = !isValid
+//    )
 }
 
 @Composable

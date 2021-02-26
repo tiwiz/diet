@@ -1,29 +1,35 @@
 package io.rob.diet.progress
 
 import android.content.res.Configuration
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.*
+import androidx.navigation.NavController
+import androidx.navigation.compose.navigate
 import io.rob.diet.R
-import io.rob.diet.charts.LineChart
+import io.rob.diet.common.Lce
 import io.rob.diet.ui.theme.DietTheme
+import java.util.*
 
 @Composable
-fun ElementUI(
+private fun ElementUI(
     title: String,
     element: RecapElement,
     clickBehaviour: () -> Unit = {}
@@ -53,18 +59,18 @@ fun ElementUI(
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Image(
-                        imageVector = vectorResource(id = R.drawable.ic_history),
+                        painter = painterResource(id = R.drawable.ic_history),
                         contentDescription = ""
                     )
                     Text(text = "${element.start}")
                     Image(
-                        imageVector = vectorResource(id = R.drawable.ic_arrow_right),
+                        painter = painterResource(id = R.drawable.ic_arrow_right),
                         contentDescription = "",
                         modifier = Modifier.sizeIn(minWidth = 96.dp)
                     )
                     Text(text = "${element.end}")
                     Image(
-                        imageVector = vectorResource(id = R.drawable.ic_last_check),
+                        painter = painterResource(id = R.drawable.ic_last_check),
                         contentDescription = ""
                     )
                 }
@@ -76,12 +82,12 @@ fun ElementUI(
                         .padding(top = 8.dp)
                 ) {
                     Image(
-                        imageVector = vectorResource(id = R.drawable.ic_progress),
+                        painter = painterResource(id = R.drawable.ic_progress),
                         contentDescription = "",
                         modifier = Modifier.size(width = 64.dp, height = 64.dp)
                     )
                     Text(
-                        text = "${element.delta}",
+                        text = String.format("%.2f", element.delta),
                         fontSize = 48.sp
                     )
                 }
@@ -97,8 +103,7 @@ fun ElementUI(
                 modifier = Modifier
                     .background(MaterialTheme.colors.background),
                 color = MaterialTheme.colors.primary,
-                style = MaterialTheme.typography.h2,
-
+                style = MaterialTheme.typography.h2
                 )
         }
 
@@ -106,7 +111,7 @@ fun ElementUI(
 }
 
 @Composable
-fun RecapUi(ui: ComposeRecapUI) {
+private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
     val order = arrayOf(
         R.string.weight_hint,
@@ -117,7 +122,7 @@ fun RecapUi(ui: ComposeRecapUI) {
         R.string.waist
     )
 
-    Column {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Text(
             text = stringResource(id = R.string.progress_title),
             modifier = Modifier
@@ -128,11 +133,34 @@ fun RecapUi(ui: ComposeRecapUI) {
         )
 
         order.forEach { res ->
-            ElementUI(title = stringResource(id = res), element = ui[res]!!)
+            val title = stringResource(id = res)
+            ElementUI(title = title, element = ui[res]!!) {
+                navigation("chart/${title.toLowerCase(Locale.getDefault())}")
+            }
         }
     }
 
 
+}
+
+
+@Composable
+fun ProgressUI(navController: NavController, viewModel: ProgressViewModel) {
+    val state by viewModel.composeRecap.observeAsState(initial = Lce.Loading)
+
+    Crossfade(targetState = state) {
+        when (it) {
+            is Lce.Loading -> Box {}
+            is Lce.Success -> RecapUi(ui = it.data) { destination ->
+                navController.navigate(destination)
+            }
+            else -> Box {}
+        }
+    }
+
+    if (state !is Lce.Success) {
+        viewModel.fetchComposeRecap()
+    }
 }
 
 private val previewData = hashMapOf(

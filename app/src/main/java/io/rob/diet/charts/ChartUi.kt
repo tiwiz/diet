@@ -58,7 +58,7 @@ fun LineChart(
 
         Canvas(modifier = Modifier
             .fillMaxWidth()
-            .preferredHeight(200.dp)
+            .height(200.dp)
             .padding(16.dp)
             .pointerInteropFilter {
                 when (it.action) {
