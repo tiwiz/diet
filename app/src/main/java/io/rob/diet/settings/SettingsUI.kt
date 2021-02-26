@@ -21,8 +21,6 @@ import io.rob.diet.ui.theme.DietTheme
 
 @Composable
 fun AnonymousUserUI(onClick: () -> Unit = {}) {
-
-
     Text(
         text = "Login".toUpperCase(),
         modifier = Modifier
@@ -35,7 +33,6 @@ fun AnonymousUserUI(onClick: () -> Unit = {}) {
             .clickable { onClick() },
         style = MaterialTheme.typography.body2
     )
-
 }
 
 @Preview(
