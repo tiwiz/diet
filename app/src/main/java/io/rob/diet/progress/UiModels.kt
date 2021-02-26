@@ -1,5 +1,8 @@
 package io.rob.diet.progress
 
+import androidx.annotation.StringRes
+import io.rob.diet.Charts
+
 data class RecapUI(
     val weightStart: Float,
     val bmiStart: Float,
@@ -22,12 +25,13 @@ data class RecapUI(
 )
 
 data class RecapElement(
+    @StringRes val titleRes: Int,
     val start: Float,
     val end: Float
 ) {
     val delta = end - start
 }
 
-typealias ComposeRecapUI = Map<Int, RecapElement>
+typealias ComposeRecapUI = Map<Charts, RecapElement>
 
 class EmptyRecapException : IllegalArgumentException()

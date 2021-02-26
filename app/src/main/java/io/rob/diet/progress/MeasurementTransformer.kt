@@ -1,5 +1,6 @@
 package io.rob.diet.progress
 
+import io.rob.diet.Charts
 import io.rob.diet.R
 import javax.inject.Inject
 
@@ -42,7 +43,7 @@ class MeasurementTransformer @Inject constructor(){
         return sorted.first() to sorted.last()
     }
 
-    fun toComposeRecapUI(measurements: List<Measurement>): ComposeRecapUI? {
+    fun toComposeRecapUI(measurements: List<Measurement>): ComposeRecapUI {
 
         if (measurements.isEmpty()) {
             return emptyMap()
@@ -51,12 +52,24 @@ class MeasurementTransformer @Inject constructor(){
         val (first, last) = measurements.firstAndLastOrNull()
 
         return hashMapOf(
-            R.string.weight_hint to RecapElement(start = first.weight, end = last.weight),
-            R.string.bmi to RecapElement(start = first.bmi, end = last.bmi),
-            R.string.waist to RecapElement(start = first.waist, end = last.waist),
-            R.string.umbilical to RecapElement(start = first.umbilical, end = last.umbilical),
-            R.string.hip to RecapElement(start = first.hip, end = last.hip),
-            R.string.body_fat to RecapElement(start = first.bodyFatPct, end = last.bodyFatPct)
+            Charts.WEIGHT to RecapElement(
+                titleRes = R.string.weight_hint,
+                start = first.weight, end = last.weight),
+            Charts.BMI to RecapElement(
+                titleRes = R.string.bmi,
+                start = first.bmi, end = last.bmi),
+            Charts.WAIST to RecapElement(
+                titleRes = R.string.waist,
+                start = first.waist, end = last.waist),
+            Charts.UMBILICAL to RecapElement(
+                titleRes = R.string.umbilical,
+                start = first.umbilical, end = last.umbilical),
+            Charts.HIP to RecapElement(
+                titleRes = R.string.hip,
+                start = first.hip, end = last.hip),
+            Charts.BODY_FAT to RecapElement(
+                titleRes = R.string.body_fat,
+                start = first.bodyFatPct, end = last.bodyFatPct)
         )
     }
 }

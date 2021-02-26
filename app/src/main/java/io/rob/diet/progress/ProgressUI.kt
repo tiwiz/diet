@@ -24,6 +24,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.*
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import io.rob.diet.Charts
+import io.rob.diet.Navigation
 import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.ui.theme.DietTheme
@@ -115,12 +117,12 @@ private fun ElementUI(
 private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
     val order = arrayOf(
-        R.string.weight_hint,
-        R.string.bmi,
-        R.string.body_fat,
-        R.string.hip,
-        R.string.umbilical,
-        R.string.waist
+        Charts.WEIGHT,
+        Charts.BMI,
+        Charts.BODY_FAT,
+        Charts.HIP,
+        Charts.UMBILICAL,
+        Charts.WAIST
     )
 
     Box(
@@ -145,15 +147,15 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
             )
 
             order.forEach { res ->
-                val title = stringResource(id = res)
-                ElementUI(title = title, element = ui[res]!!) {
-                    navigation("chart/${title.toLowerCase(Locale.getDefault())}")
+                val item = ui[res]!!
+                ElementUI(title = stringResource(id = item.titleRes), element = item) {
+                    navigation("${Navigation.CHART.asString}${res.type}")
                 }
             }
         }
 
         FloatingActionButton(
-            onClick = { navigation("newMeasurement") },
+            onClick = { navigation(Navigation.NEW_MEASUREMENT.asString) },
             backgroundColor = MaterialTheme.colors.primary,
             contentColor = MaterialTheme.colors.background
         ) {
@@ -184,12 +186,12 @@ fun ProgressUI(navController: NavController, viewModel: ProgressViewModel) {
 }
 
 private val previewData = hashMapOf(
-    R.string.weight_hint to RecapElement(start = 5f, end = 6f),
-    R.string.bmi to RecapElement(start = 5f, end = 6f),
-    R.string.body_fat to RecapElement(start = 5f, end = 6f),
-    R.string.hip to RecapElement(start = 5f, end = 6f),
-    R.string.umbilical to RecapElement(start = 5f, end = 6f),
-    R.string.waist to RecapElement(start = 5f, end = 6f),
+     Charts.WEIGHT to RecapElement(titleRes = R.string.weight_hint, start = 5f, end = 6f),
+     Charts.BMI to RecapElement(titleRes = R.string.bmi, start = 5f, end = 6f),
+     Charts.BODY_FAT to RecapElement(titleRes = R.string.body_fat, start = 5f, end = 6f),
+     Charts.HIP to RecapElement(titleRes = R.string.hip,start = 5f, end = 6f),
+     Charts.UMBILICAL to RecapElement(titleRes = R.string.umbilical, start = 5f, end = 6f),
+     Charts.WAIST to RecapElement(titleRes = R.string.waist, start = 5f, end = 6f),
 )
 
 @Preview(

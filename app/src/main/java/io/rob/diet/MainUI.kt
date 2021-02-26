@@ -11,11 +11,30 @@ import io.rob.diet.progress.ProgressViewModel
 fun MainUI(viewModel: ProgressViewModel) {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "progress") {
-        composable("progress") { ProgressUI(navController = navController, viewModel = viewModel) }
-        composable("chart/{type}") { entry ->
+    NavHost(navController = navController, startDestination = Navigation.PROGRESS.asString) {
+        composable(Navigation.PROGRESS.asString) { ProgressUI(navController = navController, viewModel = viewModel) }
+        composable("${Navigation.CHART.asString}{type}") { entry ->
             println("Value: ${entry.arguments?.getString("type")}")
         }
+        composable(Navigation.NEW_MEASUREMENT.asString) {
+            println("New measurement")
+        }
     }
+}
+
+enum class Navigation(val asString: String) {
+    PROGRESS("progress"),
+    CHART("chart/"),
+    NEW_MEASUREMENT("new_measurement")
+
+}
+
+enum class Charts(val type: String) {
+    BMI("bmi"),
+    WEIGHT("weight"),
+    BODY_FAT("body_fat"),
+    HIP("hip"),
+    UMBILICAL("umbilical"),
+    WAIST("waist")
 }
 
