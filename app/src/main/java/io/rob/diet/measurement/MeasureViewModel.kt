@@ -1,15 +1,17 @@
 package io.rob.diet.measurement
 
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.rob.diet.progress.Measurement
 import io.rob.diet.storage.ProgressRepository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MeasureViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MeasureViewModel @Inject constructor(
     private val repository: ProgressRepository
 ) : ViewModel() {
 

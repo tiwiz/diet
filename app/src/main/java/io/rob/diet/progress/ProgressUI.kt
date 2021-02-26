@@ -28,6 +28,7 @@ import io.rob.diet.Charts
 import io.rob.diet.Navigation
 import io.rob.diet.R
 import io.rob.diet.common.Lce
+import io.rob.diet.compose.ComposeViewModel
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
 
@@ -167,7 +168,7 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
 
 @Composable
-fun ProgressUI(navController: NavController, viewModel: ProgressViewModel) {
+fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewModel()) {
     val state by viewModel.composeRecap.observeAsState(initial = Lce.Loading)
 
     Crossfade(targetState = state) {

@@ -21,11 +21,6 @@ class ProgressViewModel @Inject constructor(
     val recap: LiveData<Lce<RecapUI>>
         get() = _recap
 
-    val _composeRecap = MutableLiveData<Lce<ComposeRecapUI>>()
-
-    val composeRecap : LiveData<Lce<ComposeRecapUI>>
-        get() = _composeRecap
-
     fun fetchRecap() {
         _recap.postValue(Lce.Loading)
 
@@ -37,21 +32,6 @@ class ProgressViewModel @Inject constructor(
                 _recap.postValue(Lce.Error(EmptyRecapException()))
             } else {
                 _recap.postValue(Lce.Success(recapUi))
-            }
-        }
-    }
-
-    fun fetchComposeRecap() {
-        _composeRecap.postValue(Lce.Loading)
-
-        viewModelScope.launch {
-            val measurements = repository.getMeasurements()
-            val recapUi = measurementTransformer.toComposeRecapUI(measurements)
-
-            if (recapUi == null) {
-                _composeRecap.postValue(Lce.Error(EmptyRecapException()))
-            } else {
-                _composeRecap.postValue(Lce.Success(recapUi))
             }
         }
     }
