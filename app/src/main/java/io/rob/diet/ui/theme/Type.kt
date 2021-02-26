@@ -26,7 +26,7 @@ val lightThemeTypography = Typography(
     h1 = TextStyle(
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.ExtraLight,
-        fontSize = 24.sp
+        fontSize = 28.sp
     ),
     h2 = TextStyle(
         textAlign = TextAlign.Center,
@@ -57,7 +57,7 @@ val darkThemeTypography = Typography(
     h1 = TextStyle(
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.ExtraLight,
-        fontSize = 24.sp
+        fontSize = 28.sp
     ),
     h2 = TextStyle(
         textAlign = TextAlign.Center,

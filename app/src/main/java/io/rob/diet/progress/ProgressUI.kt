@@ -6,6 +6,7 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -52,7 +53,7 @@ private fun ElementUI(
                         border = BorderStroke(width = 1.dp, color = Color.LightGray),
                         shape = RoundedCornerShape(8.dp)
                     )
-                    .padding(top = 20.dp, start = 8.dp, end = 8.dp, bottom = 8.dp)
+                    .padding(top = 20.dp, bottom = 8.dp)
             ) {
                 Row(
                     horizontalArrangement = Arrangement.Center,
@@ -104,7 +105,7 @@ private fun ElementUI(
                     .background(MaterialTheme.colors.background),
                 color = MaterialTheme.colors.primary,
                 style = MaterialTheme.typography.h2
-                )
+            )
         }
 
     }
@@ -122,24 +123,43 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
         R.string.waist
     )
 
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        Text(
-            text = stringResource(id = R.string.progress_title),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            color = MaterialTheme.colors.primary,
-            style = MaterialTheme.typography.h1
-        )
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(bottom = 8.dp, start = 8.dp, end = 8.dp),
+        contentAlignment = Alignment.BottomEnd
+    ) {
 
-        order.forEach { res ->
-            val title = stringResource(id = res)
-            ElementUI(title = title, element = ui[res]!!) {
-                navigation("chart/${title.toLowerCase(Locale.getDefault())}")
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+        ) {
+            Text(
+                text = stringResource(id = R.string.progress_title),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = 16.dp),
+                color = MaterialTheme.colors.primary,
+                style = MaterialTheme.typography.h1
+            )
+
+            order.forEach { res ->
+                val title = stringResource(id = res)
+                ElementUI(title = title, element = ui[res]!!) {
+                    navigation("chart/${title.toLowerCase(Locale.getDefault())}")
+                }
             }
         }
-    }
 
+        FloatingActionButton(
+            onClick = { navigation("newMeasurement") },
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.background
+        ) {
+            Image(painter = painterResource(id = R.drawable.ic_new), contentDescription = "")
+        }
+    }
 
 }
 
