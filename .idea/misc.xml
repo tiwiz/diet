@@ -24,6 +24,11 @@
         <entry key="../../../../layout/compose-model-1613896475821.xml" value="0.375" />
         <entry key="../../../../layout/compose-model-1614335936811.xml" value="0.149442538593482" />
         <entry key="../../../../layout/compose-model-1614338880660.xml" value="0.39166666666666666" />
+        <entry key="../../../../layout/compose-model-1614345393581.xml" value="0.2442159383033419" />
+        <entry key="../../../../layout/compose-model-1614345453251.xml" value="0.45" />
+        <entry key="../../../../layout/compose-model-1614346777505.xml" value="0.375" />
+        <entry key="../../../../layout/compose-model-1614346862716.xml" value="0.45" />
+        <entry key="../../../../layout/compose-model-1614347352095.xml" value="0.5" />
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/ic_delta.xml" value="0.35625" />
@@ -32,6 +37,7 @@
         <entry key="app/src/main/res/drawable/ic_new.xml" value="0.39444444444444443" />
         <entry key="app/src/main/res/drawable/ic_progress.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_measurement.xml" value="0.5677083333333334" />
+        <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.5344202898550725" />
         <entry key="app/src/main/res/layout/progress_recap_element.xml" value="0.5677083333333334" />
       </map>
     </option>
