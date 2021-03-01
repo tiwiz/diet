@@ -6,32 +6,32 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import io.rob.diet.R
 import io.rob.diet.progress.UiMeasurement
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
 
+@ExperimentalComposeUiApi
 @Composable
 fun LabeledInput(
     label: String,
@@ -40,41 +40,52 @@ fun LabeledInput(
     focusRequester: FocusRequester,
     isLast: Boolean = false
 ) {
-    val text = remember { mutableStateOf("") }
-    var isValid = true
+    var text by rememberSaveable { mutableStateOf("") }
+    var isInvalid by remember { mutableStateOf(false) }
+    val keyboardController = LocalSoftwareKeyboardController.current
 
-//    OutlinedTextField(
-//        value = text.value,
-//        modifier = modifier
-//            .fillMaxWidth()
-//            .padding(horizontal = 16.dp, vertical = 8.dp),
-//        onValueChange = { text.value = it },
-//        label = { Text(label) },
-//        onImeActionPerformed = { imeAction, controller ->
-//            if (isValid && imeAction == ImeAction.Next) {
-//                focusRequester.requestFocus()
-//                updater(text.value)
-//            } else if (isValid) {
-//                updater(text.value)
-//                controller?.hideSoftwareKeyboard()
-//            }
-//        },
-//        onTextInputStarted = {
-//            isValid = text.value.toFloatOrNull() != null
-//        },
-//        keyboardOptions = KeyboardOptions(
-//            autoCorrect = false,
-//            keyboardType = KeyboardType.Number,
-//            imeAction = if (isLast) {
-//                ImeAction.Send
-//            } else {
-//                ImeAction.Next
-//            }
-//        ),
-//        isErrorValue = !isValid
-//    )
+    fun updateOrError(doNext: () -> Unit) {
+        if (text.toFloatOrNull() == null) {
+            isInvalid = true
+        } else {
+            isInvalid = false
+            updater(text)
+            doNext()
+        }
+    }
+
+    OutlinedTextField(value = text,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        onValueChange = { text = it },
+        label = { Text(text = label) },
+        isError = isInvalid,
+        keyboardOptions = KeyboardOptions(
+            autoCorrect = false,
+            keyboardType = KeyboardType.Number,
+            imeAction = if (isLast) {
+                ImeAction.Send
+            } else {
+                ImeAction.Next
+            }
+        ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                updateOrError {
+                    keyboardController?.hideSoftwareKeyboard()
+                }
+            },
+            onNext = {
+                updateOrError {
+                    focusRequester.requestFocus()
+                }
+            }
+        )
+    )
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun MeasurementUI(completion: (UiMeasurement) -> Unit = {}) {
 
