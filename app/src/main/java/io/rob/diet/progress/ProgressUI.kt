@@ -3,7 +3,6 @@ package io.rob.diet.progress
 import android.content.res.Configuration
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FloatingActionButton
@@ -30,7 +29,6 @@ import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.compose.ComposeViewModel
 import io.rob.diet.ui.theme.DietTheme
-import java.util.*
 
 @Composable
 private fun ElementUI(
@@ -115,6 +113,31 @@ private fun ElementUI(
 }
 
 @Composable
+private fun Title(settingsClick: () -> Unit = {}) {
+    Box(
+        modifier = Modifier.fillMaxWidth(),
+        contentAlignment = Alignment.CenterEnd
+    ) {
+        Text(
+            text = stringResource(id = R.string.progress_title),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(all = 16.dp),
+            color = MaterialTheme.colors.primary,
+            style = MaterialTheme.typography.h1
+        )
+        Image(
+            painter = painterResource(id = R.drawable.ic_settings),
+            contentDescription = "",
+            modifier = Modifier
+                .padding(end = 8.dp)
+                .requiredSize(width = 24.dp, height = 24.dp)
+                .clickable { settingsClick() }
+        )
+    }
+}
+
+@Composable
 private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
     val order = arrayOf(
@@ -138,14 +161,9 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(
-                text = stringResource(id = R.string.progress_title),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 16.dp),
-                color = MaterialTheme.colors.primary,
-                style = MaterialTheme.typography.h1
-            )
+            Title {
+                navigation(Navigation.SETTINGS.asString)
+            }
 
             order.forEach { res ->
                 val item = ui[res]!!
@@ -187,12 +205,12 @@ fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewM
 }
 
 private val previewData = hashMapOf(
-     Charts.WEIGHT to RecapElement(titleRes = R.string.weight_hint, start = 5f, end = 6f),
-     Charts.BMI to RecapElement(titleRes = R.string.bmi, start = 5f, end = 6f),
-     Charts.BODY_FAT to RecapElement(titleRes = R.string.body_fat, start = 5f, end = 6f),
-     Charts.HIP to RecapElement(titleRes = R.string.hip,start = 5f, end = 6f),
-     Charts.UMBILICAL to RecapElement(titleRes = R.string.umbilical, start = 5f, end = 6f),
-     Charts.WAIST to RecapElement(titleRes = R.string.waist, start = 5f, end = 6f),
+    Charts.WEIGHT to RecapElement(titleRes = R.string.weight_hint, start = 5f, end = 6f),
+    Charts.BMI to RecapElement(titleRes = R.string.bmi, start = 5f, end = 6f),
+    Charts.BODY_FAT to RecapElement(titleRes = R.string.body_fat, start = 5f, end = 6f),
+    Charts.HIP to RecapElement(titleRes = R.string.hip, start = 5f, end = 6f),
+    Charts.UMBILICAL to RecapElement(titleRes = R.string.umbilical, start = 5f, end = 6f),
+    Charts.WAIST to RecapElement(titleRes = R.string.waist, start = 5f, end = 6f),
 )
 
 @Preview(

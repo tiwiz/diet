@@ -49,6 +49,7 @@
         <entry key="app/src/main/res/drawable/ic_last_check.xml" value="0.5" />
         <entry key="app/src/main/res/drawable/ic_new.xml" value="0.39444444444444443" />
         <entry key="app/src/main/res/drawable/ic_progress.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable/ic_settings.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_measurement.xml" value="0.5677083333333334" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.5344202898550725" />
         <entry key="app/src/main/res/layout/progress_recap_element.xml" value="0.5677083333333334" />

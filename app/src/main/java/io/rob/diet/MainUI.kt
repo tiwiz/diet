@@ -33,8 +33,8 @@ fun MainUI(viewModel: ComposeViewModel) {
 enum class Navigation(val asString: String) {
     PROGRESS("progress"),
     CHART("chart/"),
-    NEW_MEASUREMENT("new_measurement")
-
+    NEW_MEASUREMENT("new_measurement"),
+    SETTINGS("settings")
 }
 
 enum class Charts(val type: String) {
