@@ -26,6 +26,7 @@ import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import io.rob.diet.R
 import io.rob.diet.common.Lce
+import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
 
@@ -111,7 +112,7 @@ fun SettingsUI() {
 
     Crossfade(targetState = state) {
         when (it) {
-            is Lce.Loading -> Box {}
+            is Lce.Loading -> LoadingUI()
             is Lce.Success -> if (it.data.isEmpty()) {
                 AnonymousUserUI {
                     loginContent.launch(null)
