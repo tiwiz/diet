@@ -4,11 +4,14 @@ import android.app.Application
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.firebase.ui.auth.AuthUI
+import dagger.hilt.android.lifecycle.HiltViewModel
 import io.rob.diet.common.Lce
 import io.rob.diet.common.userOrEmpty
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SettingsViewModel @ViewModelInject constructor(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class SettingsViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
 
     private val _user = MutableLiveData<Lce<User>>()
 
