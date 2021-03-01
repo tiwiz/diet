@@ -51,5 +51,6 @@
     <string name="food_type_hint">Tipo</string>
     <string name="history_title">Storico</string>
     <string name="settings_title">Impostazioni</string>
+    <string name="loading">Caricamento…</string>
 
 </resources>

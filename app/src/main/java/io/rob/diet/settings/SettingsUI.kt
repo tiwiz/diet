@@ -2,7 +2,6 @@ package io.rob.diet.settings
 
 import android.content.res.Configuration
 import android.net.Uri
-import android.service.autofill.UserData
 import androidx.activity.compose.registerForActivityResult
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.BorderStroke

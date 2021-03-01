@@ -119,6 +119,7 @@ dependencies {
 
     implementation "io.coil-kt:coil:1.1.1"
     implementation "dev.chrisbanes.accompanist:accompanist-coil:0.6.1"
+    implementation "com.airbnb.android:lottie-compose:1.0.0-alpha07-SNAPSHOT"
 
     debugImplementation "com.facebook.flipper:flipper:0.64.0"
     debugImplementation "com.facebook.soloader:soloader:0.9.0"
