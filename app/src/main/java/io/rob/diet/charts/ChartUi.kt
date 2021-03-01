@@ -25,6 +25,7 @@ import io.rob.diet.Charts
 import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.compose.ComposeViewModel
+import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
 import kotlin.math.roundToInt
 import kotlin.math.truncate
@@ -193,7 +194,7 @@ fun ChartsUI(type: Charts, viewModel: ComposeViewModel = viewModel()) {
 
     Crossfade(targetState = state) {
         when (it) {
-            is Lce.Loading -> Box {}
+            is Lce.Loading -> LoadingUI()
             is Lce.Success -> LineChart(
                 title = it.data.title,
                 points = it.data.points,

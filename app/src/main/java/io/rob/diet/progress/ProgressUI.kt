@@ -28,6 +28,7 @@ import io.rob.diet.Navigation
 import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.compose.ComposeViewModel
+import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
 
 @Composable
@@ -191,7 +192,7 @@ fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewM
 
     Crossfade(targetState = state) {
         when (it) {
-            is Lce.Loading -> Box {}
+            is Lce.Loading -> LoadingUI()
             is Lce.Success -> RecapUi(ui = it.data) { destination ->
                 navController.navigate(destination)
             }
