@@ -22,3 +22,5 @@ build/
 /.firebaserc
 /app/build/
 /buildSrc/build/
+*.jks
+*.pem
