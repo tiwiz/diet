@@ -25,6 +25,8 @@ import io.rob.diet.Charts
 import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.compose.ComposeViewModel
+import io.rob.diet.compose.DietTitle
+import io.rob.diet.compose.ErrorUI
 import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
 import kotlin.math.roundToInt
@@ -50,15 +52,7 @@ fun LineChart(
             .verticalScroll(rememberScrollState())
     ) {
 
-        Text(
-            text = title,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
-            color = MaterialTheme.colors.primary,
-            style = MaterialTheme.typography.h1
-        )
-
+        DietTitle(title = title)
         Canvas(modifier = Modifier
             .fillMaxWidth()
             .height(200.dp)
@@ -156,14 +150,7 @@ fun LineChart(
                 }
             })
 
-        Text(
-            text = stringResource(id = R.string.history_title),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            color = MaterialTheme.colors.primary,
-            style = MaterialTheme.typography.h1
-        )
+        DietTitle(titleRes = R.string.history_title)
 
         points.forEachIndexed { index, value ->
 
@@ -192,6 +179,8 @@ fun LineChart(
 fun ChartsUI(type: Charts, viewModel: ComposeViewModel = viewModel()) {
     val state by viewModel.chartData.observeAsState(initial = Lce.Loading)
 
+    fun fetchData() = viewModel.fetchPointsFor(type)
+
     Crossfade(targetState = state) {
         when (it) {
             is Lce.Loading -> LoadingUI()
@@ -200,12 +189,12 @@ fun ChartsUI(type: Charts, viewModel: ComposeViewModel = viewModel()) {
                 points = it.data.points,
                 descriptions = it.data.descriptions
             )
-            else -> Box {}
+            else -> ErrorUI { fetchData() }
         }
     }
 
     if (state !is Lce.Success) {
-        viewModel.fetchPointsFor(type)
+        fetchData()
     }
 }
 

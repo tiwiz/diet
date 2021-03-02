@@ -20,15 +20,14 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
 import io.rob.diet.Charts
 import io.rob.diet.Navigation
 import io.rob.diet.R
 import io.rob.diet.common.Lce
-import io.rob.diet.compose.ComposeViewModel
-import io.rob.diet.compose.LoadingUI
+import io.rob.diet.compose.*
 import io.rob.diet.ui.theme.DietTheme
 
 @Composable
@@ -101,12 +100,10 @@ private fun ElementUI(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-            Text(
-                title,
+            DietSubtitle(
+                label = title,
                 modifier = Modifier
-                    .background(MaterialTheme.colors.background),
-                color = MaterialTheme.colors.primary,
-                style = MaterialTheme.typography.h2
+                    .background(MaterialTheme.colors.background)
             )
         }
 
@@ -119,14 +116,7 @@ private fun Title(settingsClick: () -> Unit = {}) {
         modifier = Modifier.fillMaxWidth(),
         contentAlignment = Alignment.CenterEnd
     ) {
-        Text(
-            text = stringResource(id = R.string.progress_title),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 16.dp),
-            color = MaterialTheme.colors.primary,
-            style = MaterialTheme.typography.h1
-        )
+        DietTitle(titleRes = R.string.progress_title)
         Image(
             painter = painterResource(id = R.drawable.ic_settings),
             contentDescription = "",
@@ -193,10 +183,16 @@ fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewM
     Crossfade(targetState = state) {
         when (it) {
             is Lce.Loading -> LoadingUI()
-            is Lce.Success -> RecapUi(ui = it.data) { destination ->
-                navController.navigate(destination)
+            is Lce.Success -> if (it.data.isEmpty()) {
+                navController.navigate(Navigation.SETTINGS.asString)
+            } else {
+                RecapUi(ui = it.data) { destination ->
+                    navController.navigate(destination)
+                }
             }
-            else -> Box {}
+            else -> ErrorUI {
+                viewModel.fetchComposeRecap()
+            }
         }
     }
 

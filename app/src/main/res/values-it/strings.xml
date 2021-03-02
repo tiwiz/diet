@@ -52,5 +52,8 @@
     <string name="history_title">Storico</string>
     <string name="settings_title">Impostazioni</string>
     <string name="loading">Caricamento…</string>
-
+    <string name="retry">Riprova</string>
+    <string name="loading_animation">Animazione (caricamento)</string>
+    <string name="error_animation">Animazione (errore)</string>
+    <string name="licenses_title">Licenze</string>
 </resources>

@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.rob.diet.R
+import io.rob.diet.compose.DietTitle
 import io.rob.diet.progress.UiMeasurement
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
@@ -106,13 +107,7 @@ fun MeasurementUI(completion: (UiMeasurement) -> Unit = {}) {
         verticalArrangement = Arrangement.Center
     ) {
 
-        Text(
-            text = stringResource(id = R.string.new_measurements_title),
-            modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colors.primary,
-            style = MaterialTheme.typography.h1
-        )
-
+        DietTitle(titleRes = R.string.new_measurements_title)
         LabeledInput(
             label = stringResource(id = R.string.weight_hint),
             focusRequester = focusRequesterBmi,

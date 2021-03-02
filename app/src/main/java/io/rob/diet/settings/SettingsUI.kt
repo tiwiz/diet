@@ -4,11 +4,10 @@ import android.content.res.Configuration
 import android.net.Uri
 import androidx.activity.compose.registerForActivityResult
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -16,7 +15,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,53 +24,46 @@ import coil.transform.CircleCropTransformation
 import dev.chrisbanes.accompanist.coil.CoilImage
 import io.rob.diet.R
 import io.rob.diet.common.Lce
-import io.rob.diet.compose.LoadingUI
+import io.rob.diet.compose.*
 import io.rob.diet.ui.theme.DietTheme
-import java.util.*
 
 const val PLACEHOLDER_URL = "https://i.ibb.co/cxtT1Pn/ic-launcher-playstore.png"
 
 @Composable
 fun AnonymousUserUI(onClick: () -> Unit = {}) {
     Column {
-        Title()
-        Button("Login") { onClick() }
+        DietTitle(titleRes = R.string.settings_title)
+        DietButton("Login") { onClick() }
+        Legal()
     }
 }
 
-@Composable
-private fun Button(label: String, onClick: () -> Unit = {}) {
-    Text(
-        text = label.toUpperCase(Locale.getDefault()),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = 16.dp)
-            .border(
-                border = BorderStroke(width = 1.dp, color = Color.LightGray),
-                shape = RoundedCornerShape(2.dp)
-            )
-            .clickable { onClick() },
-        style = MaterialTheme.typography.body2
-    )
-}
+
 
 @Composable
-private fun Title() {
-    Text(
-        text = stringResource(id = R.string.settings_title),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = 16.dp),
-        color = MaterialTheme.colors.primary,
-        style = MaterialTheme.typography.h1
-    )
+private fun Legal() {
+    Column(modifier = Modifier
+        .fillMaxWidth()
+        .fillMaxHeight()
+        .padding(all = 16.dp)
+        .verticalScroll(rememberScrollState())) {
+
+        DietTitle(titleRes = R.string.licenses_title)
+        DietSubtitle(label = stringResource(id = R.string.loading_animation))
+        LinkifiedText(text = "Tanvi Sharma @ LottieFiles",
+            link = "https://lottiefiles.com/22499-stay-healthy-eat-healty")
+        Divider(thickness = 2.dp)
+        DietSubtitle(label = stringResource(id = R.string.error_animation))
+        LinkifiedText(text = "Thais Roese @ LottieFiles",
+            link = "https://lottiefiles.com/38213-error")
+    }
 }
 
 @Composable
 fun LoggedUserUI(user: User, onClick: () -> Unit = {}) {
 
     Column {
-        Title()
+        DietTitle(titleRes = R.string.settings_title)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -97,7 +88,8 @@ fun LoggedUserUI(user: User, onClick: () -> Unit = {}) {
                 )
             }
         }
-        Button(label = "Logout") { onClick() }
+        DietButton(label = "Logout") { onClick() }
+        Legal()
     }
 }
 
@@ -122,7 +114,7 @@ fun SettingsUI() {
                     viewModel.logOut()
                 }
             }
-            else -> Box {}
+            else -> ErrorUI()
         }
     }
 

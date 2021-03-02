@@ -56,5 +56,9 @@
     <string name="history_title">History</string>
     <string name="settings_title">Settings</string>
     <string name="loading">Loading…</string>
+    <string name="retry">Try again</string>
+    <string name="loading_animation">Loading animation</string>
+    <string name="error_animation">Error animation</string>
+    <string name="licenses_title">Licenses</string>
 
 </resources>
