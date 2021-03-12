@@ -28,7 +28,9 @@ fun MainUI(viewModel: ComposeViewModel = viewModel()) {
             ChartsUI(param, viewModel)
         }
         composable(Navigation.NEW_MEASUREMENT.asString) {
-            MeasurementUI()
+            MeasurementUI {
+                viewModel.saveData(it.toMeasurement())
+            }
         }
         composable(Navigation.SETTINGS.asString) {
             SettingsUI()
