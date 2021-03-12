@@ -195,10 +195,6 @@ fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewM
             }
         }
     }
-
-    if (state !is Lce.Success) {
-        viewModel.fetchComposeRecap()
-    }
 }
 
 private val previewData = hashMapOf(

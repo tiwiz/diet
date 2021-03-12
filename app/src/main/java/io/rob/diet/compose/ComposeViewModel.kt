@@ -42,11 +42,7 @@ class ComposeViewModel @Inject constructor(
             val measurements = repository.getMeasurements()
             val recapUi = measurementTransformer.toComposeRecapUI(measurements)
 
-            if (recapUi.isEmpty()) {
-                _composeRecap.postValue(Lce.Error(EmptyRecapException()))
-            } else {
-                _composeRecap.postValue(Lce.Success(recapUi))
-            }
+            _composeRecap.postValue(Lce.Success(recapUi))
         }
     }
 
