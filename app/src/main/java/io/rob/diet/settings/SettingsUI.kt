@@ -39,23 +39,28 @@ fun AnonymousUserUI(onClick: () -> Unit = {}) {
 }
 
 
-
 @Composable
 private fun Legal() {
-    Column(modifier = Modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .padding(all = 16.dp)
-        .verticalScroll(rememberScrollState())) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+            .padding(all = 16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
 
         DietTitle(titleRes = R.string.licenses_title)
         DietSubtitle(label = stringResource(id = R.string.loading_animation))
-        LinkifiedText(text = "Tanvi Sharma @ LottieFiles",
-            link = "https://lottiefiles.com/22499-stay-healthy-eat-healty")
-        Divider(thickness = 2.dp)
+        LinkifiedText(
+            text = "Tanvi Sharma @ LottieFiles",
+            link = "https://lottiefiles.com/22499-stay-healthy-eat-healty"
+        )
+        Divider(thickness = 2.dp, modifier = Modifier.padding(bottom = 8.dp, top = 8.dp))
         DietSubtitle(label = stringResource(id = R.string.error_animation))
-        LinkifiedText(text = "Thais Roese @ LottieFiles",
-            link = "https://lottiefiles.com/38213-error")
+        LinkifiedText(
+            text = "Thais Roese @ LottieFiles",
+            link = "https://lottiefiles.com/38213-error"
+        )
     }
 }
 
