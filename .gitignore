@@ -23,5 +23,6 @@ build/
 /app/build/
 /buildSrc/build/
 *.jks
+*.keystore
 *.pem
 /keystore.properties
