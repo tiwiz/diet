@@ -1,7 +1,6 @@
 package io.rob.diet.settings
 
 import android.app.Application
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.firebase.ui.auth.AuthUI
 import dagger.hilt.android.lifecycle.HiltViewModel
