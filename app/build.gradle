@@ -4,7 +4,19 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.firebase.crashlytics'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 30
 
     defaultConfig {
@@ -29,6 +41,8 @@ android {
         kotlinOptions {
             jvmTarget = JavaVersion.VERSION_11.toString()
         }
+
+        signingConfig signingConfigs.config
     }
 
     buildFeatures {
