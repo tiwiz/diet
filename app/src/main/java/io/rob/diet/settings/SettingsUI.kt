@@ -3,6 +3,7 @@ package io.rob.diet.settings
 import android.content.res.Configuration
 import android.net.Uri
 import androidx.activity.compose.registerForActivityResult
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -56,7 +57,10 @@ private fun Legal() {
             link = "https://lottiefiles.com/22499-stay-healthy-eat-healty"
         )
         Divider(thickness = 2.dp, modifier = Modifier.padding(bottom = 8.dp, top = 8.dp))
-        DietSubtitle(label = stringResource(id = R.string.error_animation))
+        DietSubtitle(
+            label = stringResource(id = R.string.error_animation),
+            modifier = Modifier.padding(top = 24.dp)
+        )
         LinkifiedText(
             text = "Thais Roese @ LottieFiles",
             link = "https://lottiefiles.com/38213-error"
@@ -103,7 +107,7 @@ fun SettingsUI() {
     val viewModel: SettingsViewModel = viewModel()
     val state by viewModel.user.observeAsState()
 
-    val loginContent = registerForActivityResult(LogInContract()) {
+    val loginContent = rememberLauncherForActivityResult(LogInContract()) {
         viewModel.loadUserData()
     }
 

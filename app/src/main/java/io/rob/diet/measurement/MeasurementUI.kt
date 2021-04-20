@@ -78,7 +78,7 @@ fun LabeledInput(
         keyboardActions = KeyboardActions(
             onDone = {
                 updateOrError {
-                    keyboardController?.hideSoftwareKeyboard()
+                    keyboardController?.hide()
                 }
             },
             onNext = {
