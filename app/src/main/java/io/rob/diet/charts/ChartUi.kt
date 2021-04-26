@@ -3,11 +3,8 @@ package io.rob.diet.charts
 import android.content.res.Configuration
 import android.view.MotionEvent
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -15,6 +12,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
@@ -55,6 +54,7 @@ fun LineChart(
         DietTitle(title = title)
         Canvas(modifier = Modifier
             .fillMaxWidth()
+            .border(width = 2.dp, Color.LightGray, shape = RectangleShape)
             .height(200.dp)
             .padding(16.dp)
             .pointerInteropFilter {
@@ -207,7 +207,7 @@ fun ChartsUI(type: Charts, viewModel: ComposeViewModel = viewModel()) {
 )
 @Composable
 fun LineChartPreview_Day() {
-    val points = arrayOf(3f, 2f, 8f, 5f, 10f, 11f, 1f, 0f, 3f, 2f)
+    val points = arrayOf(93.4f, 91.2f, 90.2f, 89.4f, 89.1f, 86.9f, 85.7f, 85.2f, 86.2f)
     val descriptions = arrayOf(
         "Mon, May 1st 2020",
         "Tue, June 2nd 2020",
@@ -217,8 +217,7 @@ fun LineChartPreview_Day() {
         "Sat, October 6th 2020",
         "Sun, November 7th 2020",
         "Mon, December 8th 2020",
-        "Tue, January 9th 2020",
-        "Wed, February 10th 2020"
+        "Tue, January 9th 2020"
     )
     DietTheme(darkTheme = false) {
         LineChart("Line by day", points, descriptions)
