@@ -5,6 +5,8 @@ import android.view.MotionEvent
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
@@ -40,21 +42,74 @@ fun LineChart(
     val pointColor = MaterialTheme.colors.primaryVariant
     val lineColor = MaterialTheme.colors.primary
 
-    val lastTap: MutableState<Float?> = remember { mutableStateOf(null) }
     val lastSelectedIndex = remember { mutableStateOf(-1) }
 
     Column(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(16.dp)
             .verticalScroll(rememberScrollState())
     ) {
 
-        DietTitle(title = title)
+        Card(
+            backgroundColor = MaterialTheme.colors.secondaryVariant,
+            shape = RoundedCornerShape(
+                bottomEnd = 16.dp,
+                bottomStart = 16.dp
+            )
+        ) {
+            Column(modifier = Modifier.padding(16.dp)) {
+                DietTitle(title = title)
+                Chart(
+                    lastSelectedIndex = lastSelectedIndex,
+                    points = points,
+                    pointColor = pointColor,
+                    lineColor = lineColor
+                )
+            }
+        }
+
+        DietTitle(titleRes = R.string.history_title)
+
+        points.forEachIndexed { index, value ->
+
+            var backModifier = Modifier
+                .fillMaxWidth()
+            var textColor = MaterialTheme.typography.body1.color
+
+            if (index == lastSelectedIndex.value) {
+                backModifier = backModifier.background(MaterialTheme.colors.primary)
+                textColor = MaterialTheme.colors.background
+            }
+
+            Box(modifier = backModifier) {
+                Text(
+                    text = "${descriptions[index]}: $value",
+                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                    color = textColor
+                )
+            }
+
+        }
+    }
+}
+
+@Composable
+private fun Chart(
+    lastSelectedIndex: MutableState<Int>,
+    points: Array<Float>,
+    pointColor: Color,
+    lineColor: Color
+) {
+    val lastTap: MutableState<Float?> = remember { mutableStateOf(null) }
+
+    Card(
+        elevation = 4.dp,
+        shape = RoundedCornerShape(size = 8.dp),
+        modifier = Modifier.padding(all = 4.dp)
+    ) {
         Canvas(modifier = Modifier
             .fillMaxWidth()
-            .border(width = 2.dp, Color.LightGray, shape = RectangleShape)
             .height(200.dp)
             .padding(16.dp)
             .pointerInteropFilter {
@@ -149,29 +204,6 @@ fun LineChart(
                     )
                 }
             })
-
-        DietTitle(titleRes = R.string.history_title)
-
-        points.forEachIndexed { index, value ->
-
-            var backModifier = Modifier
-                .fillMaxWidth()
-            var textColor = MaterialTheme.typography.body1.color
-
-            if (index == lastSelectedIndex.value) {
-                backModifier = backModifier.background(MaterialTheme.colors.primary)
-                textColor = MaterialTheme.colors.background
-            }
-
-            Box(modifier = backModifier) {
-                Text(
-                    text = "${descriptions[index]}: $value",
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                    color = textColor
-                )
-            }
-
-        }
     }
 }
 
