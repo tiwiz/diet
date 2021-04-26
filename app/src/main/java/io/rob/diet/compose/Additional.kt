@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import java.util.*
 
@@ -46,14 +47,24 @@ fun DietButton(
 }
 
 @Composable
-fun DietTitle(@StringRes titleRes: Int) {
-    DietTitleInternal(titleRes = titleRes)
+fun DietTitle(
+    @StringRes titleRes: Int,
+    modifier: Modifier = Modifier,
+    fontWeight: FontWeight? = null
+) {
+    DietTitleInternal(
+        titleRes = titleRes,
+        modifier = modifier,
+        fontWeight = fontWeight
+    )
 }
 
 @Composable
 private fun DietTitleInternal(
+    modifier: Modifier = Modifier,
     @StringRes titleRes: Int? = null,
-    title: String? = null
+    title: String? = null,
+    fontWeight: FontWeight? = null
 ) {
 
     if (titleRes == null && title == null) {
@@ -62,17 +73,26 @@ private fun DietTitleInternal(
 
     Text(
         text = titleRes?.let { stringResource(id = titleRes) } ?: title!!,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(all = 16.dp),
         color = MaterialTheme.colors.primary,
-        style = MaterialTheme.typography.h1
+        style = MaterialTheme.typography.h1,
+        fontWeight = fontWeight
     )
 }
 
 @Composable
-fun DietTitle(title: String) {
-    DietTitleInternal(title = title)
+fun DietTitle(
+    title: String,
+    modifier: Modifier = Modifier,
+    fontWeight: FontWeight? = null
+) {
+    DietTitleInternal(
+        title = title,
+        modifier = modifier,
+        fontWeight = fontWeight
+    )
 }
 
 @Composable

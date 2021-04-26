@@ -24,8 +24,8 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
+        jcenter()
         maven {
             url "https://androidx.dev/snapshots/builds/6518514/artifacts/repository/"
         }

@@ -18,10 +18,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.input.pointer.pointerInteropFilter
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
 import io.rob.diet.R
 import io.rob.diet.common.Lce
@@ -43,23 +45,38 @@ fun LineChart(
     val lineColor = MaterialTheme.colors.primary
 
     val lastSelectedIndex = remember { mutableStateOf(-1) }
+    val systemUiController = rememberSystemUiController()
 
     Column(
         Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .verticalScroll(rememberScrollState())
     ) {
 
+        systemUiController.setStatusBarColor(
+            color = MaterialTheme.colors.secondaryVariant,
+            darkIcons = MaterialTheme.colors.isLight
+        )
         Card(
             backgroundColor = MaterialTheme.colors.secondaryVariant,
             shape = RoundedCornerShape(
                 bottomEnd = 16.dp,
                 bottomStart = 16.dp
-            )
+            ),
+            elevation = 0.dp
         ) {
-            Column(modifier = Modifier.padding(16.dp)) {
-                DietTitle(title = title)
+            Column(
+                modifier = Modifier.padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 32.dp
+                )
+            ) {
+                DietTitle(
+                    title = title,
+                    fontWeight = FontWeight.Bold
+                )
                 Chart(
                     lastSelectedIndex = lastSelectedIndex,
                     points = points,
@@ -71,25 +88,27 @@ fun LineChart(
 
         DietTitle(titleRes = R.string.history_title)
 
-        points.forEachIndexed { index, value ->
+        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+            points.forEachIndexed { index, value ->
 
-            var backModifier = Modifier
-                .fillMaxWidth()
-            var textColor = MaterialTheme.typography.body1.color
+                var backModifier = Modifier
+                    .fillMaxWidth()
+                var textColor = MaterialTheme.typography.body1.color
 
-            if (index == lastSelectedIndex.value) {
-                backModifier = backModifier.background(MaterialTheme.colors.primary)
-                textColor = MaterialTheme.colors.background
+                if (index == lastSelectedIndex.value) {
+                    backModifier = backModifier.background(MaterialTheme.colors.primary)
+                    textColor = MaterialTheme.colors.background
+                }
+
+                Box(modifier = backModifier) {
+                    Text(
+                        text = "${descriptions[index]}: $value",
+                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+                        color = textColor
+                    )
+                }
+
             }
-
-            Box(modifier = backModifier) {
-                Text(
-                    text = "${descriptions[index]}: $value",
-                    modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                    color = textColor
-                )
-            }
-
         }
     }
 }
