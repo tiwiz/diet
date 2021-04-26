@@ -1,24 +1,24 @@
 package io.rob.diet.charts
 
 import android.content.res.Configuration
-import android.view.MotionEvent
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.input.pointer.pointerInteropFilter
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.graphics.PointMode
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,8 +34,6 @@ import io.rob.diet.compose.DietTitle
 import io.rob.diet.compose.ErrorUI
 import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
-import kotlin.math.roundToInt
-import kotlin.math.truncate
 
 @Composable
 fun LineChart(
@@ -162,33 +160,19 @@ private fun Chart(
                 val verticalFactor = height / points.maxOrNull()!!
                 val horizontalFactor = width / (points.size - 1)
 
-                points.forEachIndexed { hStep, value ->
-                    drawCircle(
-                        color = pointColor,
-                        radius = 10f,
-                        center = Offset(
-                            x = hStep * horizontalFactor,
-                            y = height - (value * verticalFactor)
-                        )
+                points.mapIndexed { hStep, value ->
+                    Offset(
+                        x = hStep * horizontalFactor,
+                        y = height - (value * verticalFactor)
                     )
-
-                    if (hStep > 0) {
-                        val startingOffset = Offset(
-                            x = (hStep - 1) * horizontalFactor,
-                            y = height - (points[hStep - 1] * verticalFactor)
-                        )
-
-                        val endingOffset = Offset(
-                            x = hStep * horizontalFactor,
-                            y = height - (value * verticalFactor)
-                        )
-                        drawLine(
-                            color = lineColor,
-                            start = startingOffset,
-                            end = endingOffset,
-                            strokeWidth = 5f
-                        )
-                    }
+                }.toList().let { points ->
+                    drawPoints(
+                        points = points,
+                        pointMode = PointMode.Polygon,
+                        color = pointColor,
+                        strokeWidth = 8f,
+                        cap = StrokeCap.Round
+                    )
                 }
             })
     }
