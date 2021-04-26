@@ -5,3 +5,8 @@ data class ChartModel(
     val points: Array<Float>,
     val descriptions: Array<String>
 )
+
+data class ChartRowElement(
+    val index: Int,
+    val value: Float
+)

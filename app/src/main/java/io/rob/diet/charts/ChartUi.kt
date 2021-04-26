@@ -89,27 +89,44 @@ fun LineChart(
         DietTitle(titleRes = R.string.history_title)
 
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-            points.forEachIndexed { index, value ->
-
-                var backModifier = Modifier
-                    .fillMaxWidth()
-                var textColor = MaterialTheme.typography.body1.color
-
-                if (index == lastSelectedIndex.value) {
-                    backModifier = backModifier.background(MaterialTheme.colors.primary)
-                    textColor = MaterialTheme.colors.background
-                }
-
-                Box(modifier = backModifier) {
-                    Text(
-                        text = "${descriptions[index]}: $value",
-                        modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
-                        color = textColor
+            points.toList()
+                .zipWithNext()
+                .forEachIndexed { index, value ->
+                    HistoryElement(
+                        index = index,
+                        lastSelectedIndex = lastSelectedIndex,
+                        descriptions = descriptions,
+                        value = value.first
                     )
                 }
 
-            }
+
         }
+    }
+}
+
+@Composable
+private fun HistoryElement(
+    index: Int,
+    lastSelectedIndex: MutableState<Int>,
+    descriptions: Array<String>,
+    value: Float
+) {
+    var backModifier = Modifier
+        .fillMaxWidth()
+    var textColor = MaterialTheme.typography.body1.color
+
+    if (index == lastSelectedIndex.value) {
+        backModifier = backModifier.background(MaterialTheme.colors.primary)
+        textColor = MaterialTheme.colors.background
+    }
+
+    Box(modifier = backModifier) {
+        Text(
+            text = "${descriptions[index]}: $value",
+            modifier = Modifier.padding(horizontal = 24.dp, vertical = 8.dp),
+            color = textColor
+        )
     }
 }
 
