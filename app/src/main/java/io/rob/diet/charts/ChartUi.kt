@@ -1,6 +1,7 @@
 package io.rob.diet.charts
 
 import android.content.res.Configuration
+import android.graphics.DashPathEffect
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
@@ -17,6 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
@@ -24,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.util.rangeTo
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
@@ -34,6 +37,7 @@ import io.rob.diet.compose.DietTitle
 import io.rob.diet.compose.ErrorUI
 import io.rob.diet.compose.LoadingUI
 import io.rob.diet.ui.theme.DietTheme
+import kotlin.math.roundToInt
 
 @Composable
 fun LineChart(
@@ -42,7 +46,6 @@ fun LineChart(
     descriptions: Array<String>
 ) {
     val pointColor = MaterialTheme.colors.primaryVariant
-    val lineColor = MaterialTheme.colors.primary
     val systemUiController = rememberSystemUiController()
 
     Column(
@@ -77,8 +80,7 @@ fun LineChart(
                 )
                 Chart(
                     points = points,
-                    pointColor = pointColor,
-                    lineColor = lineColor
+                    pointColor = pointColor
                 )
             }
         }
@@ -91,15 +93,23 @@ fun LineChart(
                     index = left.index,
                     descriptions = descriptions,
                     value = left.value,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier
+                        .padding(start = 16.dp, end = 8.dp, top = 8.dp, bottom = 8.dp)
+                        .weight(1f)
                 )
 
-                HistoryElement(
-                    index = right.index,
-                    descriptions = descriptions,
-                    value = right.value,
-                    modifier = Modifier.weight(1f)
-                )
+                if (right != null) {
+                    HistoryElement(
+                        index = right.index,
+                        descriptions = descriptions,
+                        value = right.value,
+                        modifier = Modifier
+                            .padding(start = 8.dp, end = 16.dp, top = 8.dp, bottom = 8.dp)
+                            .weight(1f)
+                    )
+                } else {
+                    Box(modifier = Modifier.weight(1f))
+                }
             }
         }
     }
@@ -115,7 +125,7 @@ private fun HistoryElement(
     val textColor = MaterialTheme.typography.body1.color
 
     Card(
-        modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp),
+        modifier = modifier,
         elevation = 4.dp
     ) {
         Column(
@@ -139,8 +149,7 @@ private fun HistoryElement(
 @Composable
 private fun Chart(
     points: Array<Float>,
-    pointColor: Color,
-    lineColor: Color
+    pointColor: Color
 ) {
 
     Card(
@@ -157,13 +166,27 @@ private fun Chart(
                 val width = size.width
                 val height = size.height
 
-                val verticalFactor = height / points.maxOrNull()!!
+                val min = points.minOrNull()!!
+                val max = points.maxOrNull()!!
+                val delta = max - min
+                val verticalFactor = height / delta
                 val horizontalFactor = width / (points.size - 1)
+
+                (min.roundToInt()..max.roundToInt()).forEach { y ->
+                    val realY = height - ((y - min) * verticalFactor)
+                    val start = Offset(x = 0f, y = realY)
+                    val end = Offset(x = width, y = realY)
+                    drawLine(color = Color.DarkGray,
+                        start = start,
+                        end = end,
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+                    )
+                }
 
                 points.mapIndexed { hStep, value ->
                     Offset(
                         x = hStep * horizontalFactor,
-                        y = height - (value * verticalFactor)
+                        y = height - ((value - min) * verticalFactor)
                     )
                 }.toList().let { points ->
                     drawPoints(

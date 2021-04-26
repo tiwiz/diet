@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
 import io.rob.diet.Navigation
 import io.rob.diet.R
@@ -138,6 +139,13 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
         Charts.HIP,
         Charts.UMBILICAL,
         Charts.WAIST
+    )
+
+    val systemUiController = rememberSystemUiController()
+
+    systemUiController.setStatusBarColor(
+        color = MaterialTheme.colors.background,
+        darkIcons = MaterialTheme.colors.isLight
     )
 
     Box(
