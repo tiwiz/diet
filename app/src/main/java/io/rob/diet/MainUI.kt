@@ -5,7 +5,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.charts.ChartsUI
+import io.rob.diet.common.user
 import io.rob.diet.compose.ComposeViewModel
 import io.rob.diet.measurement.MeasurementUI
 import io.rob.diet.progress.ProgressUI
@@ -14,18 +16,21 @@ import io.rob.diet.settings.SettingsUI
 @Composable
 fun MainUI(viewModel: ComposeViewModel = viewModel()) {
     val navController = rememberNavController()
+    val systemUiController = rememberSystemUiController()
 
     NavHost(navController = navController, startDestination = Navigation.PROGRESS.asString) {
         composable(Navigation.PROGRESS.asString) {
             viewModel.fetchRecap()
             ProgressUI(
                 navController = navController,
-                viewModel = viewModel
+                systemUiController = systemUiController,
+                viewModel = viewModel,
+                userMaybe = user()
             )
         }
         composable("${Navigation.CHART.asString}{type}") { entry ->
             val param = Charts.from(entry.arguments!!.getString("type")!!)
-            ChartsUI(param, viewModel)
+            ChartsUI(type = param, viewModel = viewModel, systemUiController = systemUiController)
         }
         composable(Navigation.NEW_MEASUREMENT.asString) {
             MeasurementUI {

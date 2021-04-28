@@ -23,12 +23,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.navigate
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
 import io.rob.diet.Navigation
 import io.rob.diet.R
 import io.rob.diet.common.Lce
 import io.rob.diet.compose.*
+import io.rob.diet.settings.User
 import io.rob.diet.ui.theme.DietTheme
 
 @Composable
@@ -130,7 +132,11 @@ private fun Title(settingsClick: () -> Unit = {}) {
 }
 
 @Composable
-private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
+private fun RecapUi(
+    ui: ComposeRecapUI,
+    systemUiController: SystemUiController = rememberSystemUiController(),
+    navigation: (String) -> Unit = {}
+) {
 
     val order = arrayOf(
         Charts.WEIGHT,
@@ -140,8 +146,6 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
         Charts.UMBILICAL,
         Charts.WAIST
     )
-
-    val systemUiController = rememberSystemUiController()
 
     systemUiController.setStatusBarColor(
         color = MaterialTheme.colors.background,
@@ -185,9 +189,13 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
 
 @Composable
-fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewModel()) {
+fun ProgressUI(
+    navController: NavController,
+    systemUiController: SystemUiController,
+    viewModel: ComposeViewModel = viewModel(),
+    userMaybe: User?
+) {
     val state by viewModel.recap.observeAsState(initial = Lce.Loading)
-    val systemUiController = rememberSystemUiController()
 
     systemUiController.setStatusBarColor(
         color = MaterialTheme.colors.background,
@@ -200,7 +208,7 @@ fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewM
             is Lce.Success -> if (it.data == null) {
                 navController.navigate(Navigation.SETTINGS.asString)
             } else {
-                Recap2UI(ui = it.data!!) { destination ->
+                Recap2UI(ui = it.data!!, userMaybe = userMaybe) { destination ->
                     navController.navigate(destination)
                 }
             }
@@ -230,7 +238,7 @@ private val previewData = hashMapOf(
 @Composable
 fun ProgressUI_Day() {
     DietTheme(darkTheme = false) {
-        RecapUi(ui = previewData)
+        RecapUi(ui = previewData, systemUiController = rememberSystemUiController())
     }
 }
 
@@ -244,6 +252,6 @@ fun ProgressUI_Day() {
 @Composable
 fun ProgressUI_Night() {
     DietTheme(darkTheme = true) {
-        RecapUi(ui = previewData)
+        RecapUi(ui = previewData, systemUiController = rememberSystemUiController())
     }
 }

@@ -1,6 +1,7 @@
 package io.rob.diet.progress
 
 import android.content.res.Configuration
+import android.net.Uri
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -29,15 +30,19 @@ import dev.chrisbanes.accompanist.coil.CoilImage
 import io.rob.diet.Charts
 import io.rob.diet.Navigation
 import io.rob.diet.R
-import io.rob.diet.common.user
 import io.rob.diet.settings.PLACEHOLDER_URL
+import io.rob.diet.settings.User
 import io.rob.diet.ui.theme.DietTheme
 import java.util.*
 
 @Composable
-fun Recap2UI(ui: RecapUI, navigation: (String) -> Unit = {}) {
+fun Recap2UI(
+    ui: RecapUI,
+    userMaybe: User?,
+    navigation: (String) -> Unit = {}
+) {
     Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-        TitleUI(navigation)
+        TitleUI(userMaybe, navigation)
         WeightUI(navigation, ui)
         BodyDataUI(ui, navigation)
         MeasurementsUI(ui, navigation)
@@ -226,7 +231,7 @@ private fun BodyDataUI(
                         fontWeight = FontWeight.Light
                     )
                     Text(
-                        text = "${ui.bmiEnd} (${ui.bmiDelta})",
+                        text = "${ui.bmiEnd} (${String.format("%.2f", ui.bmiDelta)})",
                         modifier = Modifier.padding(horizontal = 8.dp),
                         fontWeight = FontWeight.Light
                     )
@@ -243,7 +248,7 @@ private fun BodyDataUI(
                         fontWeight = FontWeight.Light
                     )
                     Text(
-                        text = "${ui.bodyFatPctEnd} (${ui.bodyFatPctDelta})",
+                        text = "${ui.bodyFatPctEnd} (${String.format("%.2f", ui.bodyFatPctDelta)})",
                         modifier = Modifier.padding(horizontal = 8.dp),
                         fontWeight = FontWeight.Light
                     )
@@ -255,8 +260,11 @@ private fun BodyDataUI(
 }
 
 @Composable
-private fun TitleUI(navigation: (String) -> Unit) {
-    user()?.let { user ->
+private fun TitleUI(
+    userMaybe: User?,
+    navigation: (String) -> Unit
+) {
+    userMaybe?.let { user ->
         Box(contentAlignment = Alignment.CenterEnd) {
             Column(
                 modifier = Modifier
@@ -357,8 +365,10 @@ private val previewData = RecapUI(
 )
 @Composable
 fun Progress2UI_Day() {
+    val user = User(displayName = "Roberto Orgiu")
+
     DietTheme(darkTheme = false) {
-        Recap2UI(ui = previewData)
+        Recap2UI(ui = previewData, userMaybe = user)
     }
 }
 
@@ -371,7 +381,9 @@ fun Progress2UI_Day() {
 )
 @Composable
 fun Progress2UI_Night() {
+    val user = User(displayName = "Roberto Orgiu")
+
     DietTheme(darkTheme = true) {
-        Recap2UI(ui = previewData)
+        Recap2UI(ui = previewData, userMaybe = user)
     }
 }

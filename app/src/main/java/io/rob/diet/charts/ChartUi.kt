@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
 import io.rob.diet.R
@@ -44,7 +45,6 @@ fun LineChart(
     descriptions: Array<String>
 ) {
     val pointColor = MaterialTheme.colors.primary
-    val systemUiController = rememberSystemUiController()
 
     Column(
         Modifier
@@ -52,10 +52,6 @@ fun LineChart(
             .fillMaxHeight()
     ) {
 
-        systemUiController.setStatusBarColor(
-            color = MaterialTheme.colors.primary,
-            darkIcons = MaterialTheme.colors.isLight
-        )
         Card(
             backgroundColor = MaterialTheme.colors.primary,
             shape = RoundedCornerShape(
@@ -181,7 +177,8 @@ private fun Chart(
                     val realY = height - ((y - min) * verticalFactor)
                     val start = Offset(x = 0f, y = realY)
                     val end = Offset(x = width, y = realY)
-                    drawLine(color = Color.DarkGray,
+                    drawLine(
+                        color = Color.DarkGray,
                         start = start,
                         end = end,
                         pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
@@ -207,10 +204,19 @@ private fun Chart(
 }
 
 @Composable
-fun ChartsUI(type: Charts, viewModel: ComposeViewModel = viewModel()) {
+fun ChartsUI(
+    type: Charts,
+    systemUiController: SystemUiController,
+    viewModel: ComposeViewModel = viewModel()
+) {
     val state by viewModel.chartData.observeAsState(initial = Lce.Loading)
 
     fun fetchData() = viewModel.fetchPointsFor(type)
+
+    systemUiController.setStatusBarColor(
+        color = MaterialTheme.colors.primary,
+        darkIcons = false
+    )
 
     Crossfade(targetState = state) {
         when (it) {
