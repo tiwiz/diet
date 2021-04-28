@@ -57,11 +57,13 @@ private fun BottomUI(navigation: (String) -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
+        shape = RoundedCornerShape(16.dp)
     ) {
 
         Image(painter = painterResource(id = R.drawable.ic_new), contentDescription = "")
         Text(
             text = stringResource(id = R.string.new_measurements_title).toUpperCase(Locale.ROOT),
+            modifier = Modifier.padding(vertical = 4.dp),
             fontSize = 16.sp,
             fontWeight = FontWeight.Light
         )
