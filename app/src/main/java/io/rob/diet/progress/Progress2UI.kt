@@ -276,7 +276,7 @@ private fun TitleUI(
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = "Hello,",
+                    text = stringResource(id = R.string.user_salutation),
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Light
                 )

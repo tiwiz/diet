@@ -18,4 +18,5 @@
     <string name="progress_title">Progress</string>
     <string name="body_data_title">Body data</string>
     <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="user_salutation">Hello,</string>
 </resources>

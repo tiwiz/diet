@@ -19,4 +19,5 @@
     <string name="progress_title">Progressi</string>
     <string name="body_data_title">Dati strutturali</string>
     <string name="sign_in_with_google">Accedi con Google</string>
+    <string name="user_salutation">Ciao,</string>
 </resources>

@@ -69,7 +69,8 @@ val darkThemeTypography = Typography(
         fontWeight = FontWeight.Light,
         fontSize = 16.sp,
         textAlign = TextAlign.Center,
-        letterSpacing = 4.sp
+        letterSpacing = 4.sp,
+        color = Color.White
     )
     /* Other default text styles to override
     button = TextStyle(
