@@ -10,10 +10,7 @@ import io.rob.diet.Charts
 import io.rob.diet.charts.ChartDataFilter
 import io.rob.diet.charts.ChartModel
 import io.rob.diet.common.Lce
-import io.rob.diet.progress.ComposeRecapUI
-import io.rob.diet.progress.EmptyRecapException
-import io.rob.diet.progress.Measurement
-import io.rob.diet.progress.MeasurementTransformer
+import io.rob.diet.progress.*
 import io.rob.diet.storage.ProgressRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,6 +27,11 @@ class ComposeViewModel @Inject constructor(
     val composeRecap : LiveData<Lce<ComposeRecapUI>>
         get() = _composeRecap
 
+    private val _recap = MutableLiveData<Lce<RecapUI?>>()
+
+    val recap: LiveData<Lce<RecapUI?>>
+        get() = _recap
+
     private val _chartData = MutableLiveData<Lce<ChartModel>>()
 
     val chartData : LiveData<Lce<ChartModel>>
@@ -43,6 +45,16 @@ class ComposeViewModel @Inject constructor(
             val recapUi = measurementTransformer.toComposeRecapUI(measurements)
 
             _composeRecap.postValue(Lce.Success(recapUi))
+        }
+    }
+
+    fun fetchRecap() {
+        _recap.postValue(Lce.Loading)
+
+        viewModelScope.launch {
+            val measurements = repository.getMeasurements()
+            val recapUi = measurementTransformer.toRecapUI(measurements)
+            _recap.postValue(Lce.Success(recapUi))
         }
     }
 

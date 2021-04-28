@@ -1,54 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="meal_title">Prossimo pasto</string>
-    <string name="progress_title">Progressi</string>
-
-    <string name="carbohydrates_title">Carboidrati</string>
-    <string name="veggies_title">Verdure</string>
-    <string name="fruit_title">Frutta</string>
-    <string name="legumes_title">Legumi</string>
-    <string name="eggs_title">Uova</string>
-    <string name="canned_tuna_title">Tonno in scatola</string>
-    <string name="cold_cuts_title">Affettati</string>
-    <string name="cheese_title">Formaggio</string>
-    <string name="white_meat_title">Carne bianca</string>
-    <string name="fish_title">Pesce</string>
-    <string name="red_meat_title">Carne rossa</string>
-    <string name="pizza_title">Pizza</string>
-
-    <string name="breakfast_title">Colazione</string>
-    <string name="lunch_title">Pranzo</string>
-    <string name="afternoon_snack_title">Merenda</string>
-    <string name="dinner_title">Cena</string>
-    <string name="night_snack_title">Spuntino serale</string>
     <string name="weight_hint">Peso (KG)</string>
+    <string name="measurements_title">Misurazioni</string>
     <string name="new_measurements_title">Nuova misurazione</string>
     <string name="bmi">BMI</string>
     <string name="waist">Vita (cm)</string>
     <string name="umbilical">Ombelicale (cm)</string>
     <string name="hip">Fianchi (cm)</string>
     <string name="body_fat">Massa grassa (%)</string>
-    <string name="alternate_meal_title">Pasto</string>
-    <string name="afternoon_snack_short">Merenda</string>
-    <string name="night_snack_short">Spuntino</string>
-    <string name="alternate_day_title">Giorno</string>
-    <string name="day_1_short">Lun</string>
-    <string name="day_2_short">Mar</string>
-    <string name="day_3_short">Mer</string>
-    <string name="day_4_short">Gio</string>
-    <string name="day_5_short">Ven</string>
-    <string name="day_6_short">Sab</string>
-    <string name="day_7_short">Dom</string>
-    <string name="empty_progress_message">Nessuna misurazione registrata.</string>
-    <string name="cookies_title">Biscotti</string>
-    <string name="empty_mandatory_field_error">Questa informazione è obbligatoria</string>
-    <string name="new_serving_title">Nuova porzione</string>
-    <string name="food_description_hint">Descrizione</string>
-    <string name="food_number_hint">Quantità</string>
-    <string name="food_unit_hint">Unità</string>
-    <string name="save_new_food">Salva</string>
-    <string name="food_type_hint">Tipo</string>
     <string name="history_title">Storico</string>
     <string name="settings_title">Impostazioni</string>
     <string name="loading">Caricamento…</string>
@@ -56,4 +15,7 @@
     <string name="loading_animation">Animazione (caricamento)</string>
     <string name="error_animation">Animazione (errore)</string>
     <string name="licenses_title">Licenze</string>
+    <string name="save">Salva</string>
+    <string name="progress_title">Progressi</string>
+    <string name="body_data_title">Dati strutturali</string>
 </resources>

@@ -7,6 +7,7 @@ data class User(
     val photoUrl: Uri? = null,
     val id: String? = null
 ) {
+    val firstName = displayName?.split(" ")?.firstOrNull() ?: "User"
 
     fun isEmpty() : Boolean = this == empty
 

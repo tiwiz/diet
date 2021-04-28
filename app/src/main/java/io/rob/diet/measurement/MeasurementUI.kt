@@ -155,7 +155,7 @@ fun MeasurementUI(completion: (UiMeasurement) -> Unit = {}) {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Text(text = stringResource(id = R.string.save_new_food).toUpperCase(Locale.getDefault()))
+            Text(text = stringResource(id = R.string.save).toUpperCase(Locale.getDefault()))
         }
 
     }

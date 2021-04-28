@@ -186,15 +186,21 @@ private fun RecapUi(ui: ComposeRecapUI, navigation: (String) -> Unit = {}) {
 
 @Composable
 fun ProgressUI(navController: NavController, viewModel: ComposeViewModel = viewModel()) {
-    val state by viewModel.composeRecap.observeAsState(initial = Lce.Loading)
+    val state by viewModel.recap.observeAsState(initial = Lce.Loading)
+    val systemUiController = rememberSystemUiController()
+
+    systemUiController.setStatusBarColor(
+        color = MaterialTheme.colors.background,
+        darkIcons = MaterialTheme.colors.isLight
+    )
 
     Crossfade(targetState = state) {
         when (it) {
             is Lce.Loading -> LoadingUI()
-            is Lce.Success -> if (it.data.isEmpty()) {
+            is Lce.Success -> if (it.data == null) {
                 navController.navigate(Navigation.SETTINGS.asString)
             } else {
-                RecapUi(ui = it.data) { destination ->
+                Recap2UI(ui = it.data!!) { destination ->
                     navController.navigate(destination)
                 }
             }

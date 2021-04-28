@@ -17,7 +17,7 @@ fun MainUI(viewModel: ComposeViewModel = viewModel()) {
 
     NavHost(navController = navController, startDestination = Navigation.PROGRESS.asString) {
         composable(Navigation.PROGRESS.asString) {
-            viewModel.fetchComposeRecap()
+            viewModel.fetchRecap()
             ProgressUI(
                 navController = navController,
                 viewModel = viewModel
