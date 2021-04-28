@@ -1,7 +1,6 @@
 package io.rob.diet.charts
 
 import android.content.res.Configuration
-import android.graphics.DashPathEffect
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
@@ -26,7 +25,6 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.util.rangeTo
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import io.rob.diet.Charts
@@ -45,7 +43,7 @@ fun LineChart(
     points: Array<Float>,
     descriptions: Array<String>
 ) {
-    val pointColor = MaterialTheme.colors.primaryVariant
+    val pointColor = MaterialTheme.colors.primary
     val systemUiController = rememberSystemUiController()
 
     Column(
@@ -55,11 +53,11 @@ fun LineChart(
     ) {
 
         systemUiController.setStatusBarColor(
-            color = MaterialTheme.colors.secondaryVariant,
+            color = MaterialTheme.colors.primary,
             darkIcons = MaterialTheme.colors.isLight
         )
         Card(
-            backgroundColor = MaterialTheme.colors.secondaryVariant,
+            backgroundColor = MaterialTheme.colors.primary,
             shape = RoundedCornerShape(
                 bottomEnd = 24.dp,
                 bottomStart = 24.dp
@@ -74,10 +72,17 @@ fun LineChart(
                     bottom = 32.dp
                 )
             ) {
-                DietTitle(
-                    title = title,
+
+                Text(
+                    text = title,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 16.dp),
+                    color = MaterialTheme.colors.background,
+                    style = MaterialTheme.typography.h1,
                     fontWeight = FontWeight.Bold
                 )
+
                 Chart(
                     points = points,
                     pointColor = pointColor
