@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <color name="colorPrimary">#000000</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorPrimaryTransparent">#00000000</color>
     <color name="imageTint">#B8B8B8</color>
+    <color name="iconTint">#00796b</color>
 
 </resources>

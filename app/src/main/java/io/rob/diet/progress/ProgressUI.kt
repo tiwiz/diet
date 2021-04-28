@@ -206,7 +206,7 @@ fun ProgressUI(
         when (it) {
             is Lce.Loading -> LoadingUI()
             is Lce.Success -> if (it.data == null) {
-                navController.navigate(Navigation.SETTINGS.asString)
+                navController.navigate(Navigation.LOGIN_SCREEN.asString)
             } else {
                 Recap2UI(ui = it.data!!, userMaybe = userMaybe) { destination ->
                     navController.navigate(destination)

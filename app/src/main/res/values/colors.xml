@@ -2,5 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryTransparent">#00FFFFFF</color>
     <color name="imageTint">#202020</color>
+    <color name="iconTint">#009688</color>
 </resources>

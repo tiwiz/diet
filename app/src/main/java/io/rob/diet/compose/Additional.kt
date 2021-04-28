@@ -15,9 +15,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import java.util.*
 
 @Composable
@@ -131,5 +134,33 @@ fun LinkifiedText(
         text = linkifiedText,
         modifier = modifier,
         style = MaterialTheme.typography.body1
+    )
+}
+
+@Composable
+fun AppTitle(color: Color) {
+    val title = buildAnnotatedString {
+        withStyle(
+            style = SpanStyle(
+                color = color,
+                fontWeight = FontWeight.Bold
+            )
+        ) {
+            append("Diet")
+        }
+        withStyle(
+            style = SpanStyle(
+                color = color,
+                fontWeight = FontWeight.Light
+            )
+        ) {
+            append("Tracker")
+        }
+    }
+
+    Text(
+        text = title,
+        modifier = Modifier.padding(all = 16.dp),
+        fontSize = 36.sp
     )
 }

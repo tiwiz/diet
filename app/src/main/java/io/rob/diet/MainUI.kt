@@ -11,6 +11,7 @@ import io.rob.diet.common.user
 import io.rob.diet.compose.ComposeViewModel
 import io.rob.diet.measurement.MeasurementUI
 import io.rob.diet.progress.ProgressUI
+import io.rob.diet.settings.LoginUI
 import io.rob.diet.settings.SettingsUI
 
 @Composable
@@ -40,6 +41,9 @@ fun MainUI(viewModel: ComposeViewModel = viewModel()) {
         composable(Navigation.SETTINGS.asString) {
             SettingsUI()
         }
+        composable(Navigation.LOGIN_SCREEN.asString) {
+            LoginUI(systemUiController = systemUiController)
+        }
     }
 }
 
@@ -47,7 +51,8 @@ enum class Navigation(val asString: String) {
     PROGRESS("progress"),
     CHART("chart/"),
     NEW_MEASUREMENT("new_measurement"),
-    SETTINGS("settings")
+    SETTINGS("settings"),
+    LOGIN_SCREEN("login_screen")
 }
 
 enum class Charts(val type: String) {
