@@ -23,8 +23,8 @@ android {
         applicationId "io.rob.diet"
         minSdkVersion 26
         targetSdkVersion 30
-        versionCode 9
-        versionName "2.1.1-Internal"
+        versionCode 10
+        versionName "2.1.2-Internal"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 

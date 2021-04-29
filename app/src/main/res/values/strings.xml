@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name" translatable="false">Diet.Tracker</string>
     <string name="weight_hint">Weight (KG)</string>
     <string name="measurements_title">Measurements</string>
     <string name="new_measurements_title">New measurements</string>
